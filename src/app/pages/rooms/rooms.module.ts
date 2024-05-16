@@ -1,14 +1,14 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
-import { RoomsRoutingModule } from './rooms-routing.module';
-
+import { RoomsRoutingModule } from "./rooms-routing.module";
+import { ListComponent } from './list/list.component';
+import { ManageComponent } from './manage/manage.component';
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    RoomsRoutingModule
-  ]
+  declarations: [ 
+    ListComponent, ManageComponent
+  ],
+  imports: [CommonModule, RoomsRoutingModule],
 })
-export class RoomsModule { }
+export class RoomsModule {}
