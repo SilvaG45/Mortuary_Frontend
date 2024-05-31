@@ -1,18 +1,18 @@
-import { Router } from '@adonisjs/core/build/modules/http/main';
-import { Component, OnInit } from '@angular/core';
-import { Headquarter } from 'src/app/models/headquarter.model';
-import { HeadquarterService } from 'src/app/services/headquarter.service';
-import Swal from 'sweetalert2';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { Headquarter } from "src/app/models/headquarter.model";
+import { HeadquarterService } from "src/app/services/headquarter.service";
+import Swal from "sweetalert2";
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  selector: "app-list",
+  templateUrl: "./list.component.html",
+  styleUrls: ["./list.component.scss"],
 })
 export class ListComponent implements OnInit {
-  headquarters:Headquarter[]
-  constructor(private service:HeadquarterService, private router:Router) {
-    this.headquarters=[]
+  headquarters: Headquarter[];
+  constructor(private service: HeadquarterService, private router: Router) {
+    this.headquarters = [];
   }
 
   ngOnInit(): void {
@@ -20,10 +20,10 @@ export class ListComponent implements OnInit {
   }
 
   list() {
-    this.service.list().subscribe(data=> {
-      this.headquarters=data
-      console.log(JSON.stringify(this.headquarters))
-    })
+    this.service.list().subscribe((data) => {
+      this.headquarters = data;
+      console.log(JSON.stringify(this.headquarters));
+    });
   }
   delete(id: number) {
     Swal.fire({

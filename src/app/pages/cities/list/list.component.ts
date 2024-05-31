@@ -1,5 +1,5 @@
-import { Router } from "@adonisjs/core/build/modules/http/main";
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { City } from "src/app/models/city.model";
 import { CityService } from "src/app/services/city.service";
 import Swal from "sweetalert2";

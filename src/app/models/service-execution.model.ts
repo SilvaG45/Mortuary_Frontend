@@ -15,3 +15,11 @@ export class ServiceExecution {
   location: string;
   status: number;
 }
+export interface ResponeServiceExecution {
+  message: string;
+  data: ServiceExecution[];
+}
+export interface ResponeOneServiceExecution {
+  message: string;
+  data: ServiceExecution;
+}

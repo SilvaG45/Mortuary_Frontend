@@ -1,5 +1,5 @@
-import { Router } from "@adonisjs/core/build/modules/http/main";
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { Department } from "src/app/models/department.model";
 import { DepartmentService } from "src/app/services/department.service";
 import Swal from "sweetalert2";
@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 })
 export class ListComponent implements OnInit {
   departments: Department[];
-  constructor(private service: DepartmentService, private router:Router) {
+  constructor(private service: DepartmentService, private router: Router) {
     this.departments = [];
   }
 

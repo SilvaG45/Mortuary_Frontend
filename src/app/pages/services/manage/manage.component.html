@@ -1,1 +1,99 @@
-<p>manage works!</p>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8"></div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 *ngIf="mode == 1" class="mb-0">Visualizar</h3>
+          <h3 *ngIf="mode == 2" class="mb-0">Crear</h3>
+          <h3 *ngIf="mode == 3" class="mb-0">Actualizar</h3>
+        </div>
+        <div class="card-body">
+          <form class="form" [formGroup]="theFormGroup">
+            <div class="container">
+              <div class="row">
+                <div class="col-4">Id:</div>
+                <div class="col-8">
+                  {{ services.id }}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4">Body_ubication:</div>
+                <div class="col-8">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="services.body_ubication"
+                    [disabled]="mode == 1"
+                    formControlName="body_ubication"
+                  />
+                  <div
+                    *ngIf="
+                      getTheFormGroup.body_ubication.errors &&
+                      (getTheFormGroup.body_ubication.dirty ||
+                        getTheFormGroup.body_ubication.touched ||
+                        trysend)
+                    "
+                  >
+                    <strong
+                      *ngIf="getTheFormGroup.body_ubication.errors.required"
+                      class="msnError"
+                      >Requerido</strong
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4">Need_trip:</div>
+                <div class="col-8">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="services.need_trip"
+                    [disabled]="mode == 1"
+                    formControlName="need_trip"
+                  />
+                  <div
+                    *ngIf="
+                      getTheFormGroup.need_trip.errors &&
+                      (getTheFormGroup.need_trip.dirty ||
+                        getTheFormGroup.need_trip.touched ||
+                        trysend)
+                    "
+                  >
+                    <strong
+                      *ngIf="getTheFormGroup.need_trip.errors.required"
+                      class="msnError"
+                      >Requerido</strong
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4"></div>
+                <div class="col-8">
+                  <button
+                    *ngIf="mode == 2"
+                    class="btn btn-primary btn-block"
+                    (click)="create()"
+                  >
+                    Crear
+                  </button>
+                  <button
+                    *ngIf="mode == 3"
+                    class="btn btn-primary btn-block"
+                    (click)="update()"
+                  >
+                    Actualizar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

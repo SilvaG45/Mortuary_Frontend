@@ -8,11 +8,6 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [ListComponent, ManageComponent],
-  imports: [
-    CommonModule,
-    PlansRoutingModule,
-    FormsModule,
-    // ReactiveFormsModule
-  ],
+  imports: [CommonModule, PlansRoutingModule, FormsModule, ReactiveFormsModule],
 })
 export class PlansModule {}

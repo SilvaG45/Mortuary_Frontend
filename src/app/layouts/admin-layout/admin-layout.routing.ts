@@ -7,20 +7,61 @@ import { UserProfileComponent } from "../../pages/user-profile/user-profile.comp
 import { TablesComponent } from "../../pages/tables/tables.component";
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'dashboard',      component: DashboardComponent },
-    { path: 'user-profile',   component: UserProfileComponent },
-    { path: 'tables',         component: TablesComponent },
-    { path: 'icons',          component: IconsComponent },
-    { path: 'maps',           component: MapsComponent },
-    { path: 'rooms', loadChildren: () => import('src/app/pages/rooms/rooms.module').then(m => m.RoomsModule)},
-    { path: 'bills', loadChildren: () => import('src/app/pages/bills/bills.module').then(m => m.BillsModule)},
-    { path: 'cities', loadChildren: () => import('src/app/pages/cities/cities.module').then(m => m.CitiesModule)},
-    { path: 'departments', loadChildren: () => import('src/app/pages/departments/departments.module').then(m => m.DepartmentsModule)},
-    { path: 'headquarters', loadChildren: () => import('src/app/pages/headquarters/headquarters.module').then(m => m.HeadquartersModule)},
-    { path: 'planesbyservice', loadChildren: () => import('src/app/pages/planesbyservice/planesbyservice.module').then(m => m.PlanesbyserviceModule)},
-    { path: 'administrators', loadChildren: () => import('src/app/pages/administrators/administrators.module').then(m => m.AdministratorsModule)},
-    { path: 'drivers', loadChildren: () => import('src/app/pages/drivers/drivers.module').then(m => m.DriversModule)},
-    
+  { path: "dashboard", component: DashboardComponent },
+  { path: "user-profile", component: UserProfileComponent },
+  { path: "tables", component: TablesComponent },
+  { path: "icons", component: IconsComponent },
+  { path: "maps", component: MapsComponent },
+  {
+    path: "rooms",
+    loadChildren: () =>
+      import("src/app/pages/rooms/rooms.module").then((m) => m.RoomsModule),
+  },
+  {
+    path: "bills",
+    loadChildren: () =>
+      import("src/app/pages/bills/bills.module").then((m) => m.BillsModule),
+  },
+  {
+    path: "cities",
+    loadChildren: () =>
+      import("src/app/pages/cities/cities.module").then((m) => m.CitiesModule),
+  },
+  {
+    path: "departments",
+    loadChildren: () =>
+      import("src/app/pages/departments/departments.module").then(
+        (m) => m.DepartmentsModule
+      ),
+  },
+  {
+    path: "headquarters",
+    loadChildren: () =>
+      import("src/app/pages/headquarters/headquarters.module").then(
+        (m) => m.HeadquartersModule
+      ),
+  },
+  {
+    path: "planesbyservice",
+    loadChildren: () =>
+      import("src/app/pages/planesbyservice/planesbyservice.module").then(
+        (m) => m.PlanesbyserviceModule
+      ),
+  },
+  {
+    path: "administrators",
+    loadChildren: () =>
+      import("src/app/pages/administrators/administrators.module").then(
+        (m) => m.AdministratorsModule
+      ),
+  },
+  {
+    path: "drivers",
+    loadChildren: () =>
+      import("src/app/pages/drivers/drivers.module").then(
+        (m) => m.DriversModule
+      ),
+  },
   {
     path: "holders",
     loadChildren: () =>
@@ -68,5 +109,4 @@ export const AdminLayoutRoutes: Routes = [
         (m) => m.ServicesModule
       ),
   },
-
 ];

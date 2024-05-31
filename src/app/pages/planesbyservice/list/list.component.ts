@@ -1,5 +1,5 @@
-import { Router } from "@adonisjs/core/build/modules/http/main";
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { PlanByService } from "src/app/models/plan-by-service.model";
 import { PlanbyserviceService } from "src/app/services/planbyservice.service";
 import Swal from "sweetalert2";
@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 })
 export class ListComponent implements OnInit {
   planesbyservice: PlanByService[];
-  constructor(private service: PlanbyserviceService,private router:Router) {
+  constructor(private service: PlanbyserviceService, private router: Router) {
     this.planesbyservice = [];
   }
 

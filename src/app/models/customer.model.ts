@@ -7,8 +7,20 @@ export class Customer {
   id?: number;
   user_id: string;
   status: number;
-  holders?: Holder[];
-  beneficiaries?: Beneficiarie[];
-  plans?: Plan[];
-  services?: Service[];
+  // holders?: Holder[];
+  // beneficiaries?: Beneficiarie[];
+  // plans?: Plan[];
+  // services?: Service[];
+}
+
+export interface ResponseCustomer {
+  data: {
+    data: Customer[];
+  };
+  message: string;
+}
+
+export interface ResponseOneCustomer {
+  message: string;
+  data: Customer;
 }

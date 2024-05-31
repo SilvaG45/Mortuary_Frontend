@@ -62,10 +62,8 @@ export class ManageComponent implements OnInit {
     }
   }
   getBeneficiarie(id: number) {
-    this.service.view(id).subscribe((data) => {
-      console.log(JSON.stringify(data));
-
-      this.beneficiarie = data.data;
+    this.service.view(id).subscribe((response) => {
+      this.beneficiarie = response.data;
     });
   }
   create() {
@@ -103,7 +101,7 @@ export class ManageComponent implements OnInit {
         "Se ha actualizado un nuevo registro",
         "success"
       );
-      this.router.navigate(["beneficiarie/list"]);
+      this.router.navigate(["beneficiaries/list"]);
     });
   }
 }
