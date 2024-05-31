@@ -1,10 +1,10 @@
-import { Routes } from '@angular/router';
+import { Routes } from "@angular/router";
 
-import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
-import { IconsComponent } from '../../pages/icons/icons.component';
-import { MapsComponent } from '../../pages/maps/maps.component';
-import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
-import { TablesComponent } from '../../pages/tables/tables.component';
+import { DashboardComponent } from "../../pages/dashboard/dashboard.component";
+import { IconsComponent } from "../../pages/icons/icons.component";
+import { MapsComponent } from "../../pages/maps/maps.component";
+import { UserProfileComponent } from "../../pages/user-profile/user-profile.component";
+import { TablesComponent } from "../../pages/tables/tables.component";
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -20,10 +20,53 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'planesbyservice', loadChildren: () => import('src/app/pages/planesbyservice/planesbyservice.module').then(m => m.PlanesbyserviceModule)},
     { path: 'administrators', loadChildren: () => import('src/app/pages/administrators/administrators.module').then(m => m.AdministratorsModule)},
     { path: 'drivers', loadChildren: () => import('src/app/pages/drivers/drivers.module').then(m => m.DriversModule)},
-
-
-
-
-
+    
+  {
+    path: "holders",
+    loadChildren: () =>
+      import("src/app/pages/holders/holders.module").then(
+        (m) => m.HoldersModule
+      ),
+  },
+  {
+    path: "beneficiaries",
+    loadChildren: () =>
+      import("src/app/pages/beneficiaries/beneficiaries.module").then(
+        (m) => m.BeneficiariesModule
+      ),
+  },
+  {
+    path: "customers",
+    loadChildren: () =>
+      import("src/app/pages/customers/customers.module").then(
+        (m) => m.CustomersModule
+      ),
+  },
+  {
+    path: "memberships",
+    loadChildren: () =>
+      import("src/app/pages/memberships/memberships.module").then(
+        (m) => m.MembershipsModule
+      ),
+  },
+  {
+    path: "plans",
+    loadChildren: () =>
+      import("src/app/pages/plans/plans.module").then((m) => m.PlansModule),
+  },
+  {
+    path: "service-executions",
+    loadChildren: () =>
+      import("src/app/pages/service-executions/service-executions.module").then(
+        (m) => m.ServiceExecutionsModule
+      ),
+  },
+  {
+    path: "services",
+    loadChildren: () =>
+      import("src/app/pages/services/services.module").then(
+        (m) => m.ServicesModule
+      ),
+  },
 
 ];
