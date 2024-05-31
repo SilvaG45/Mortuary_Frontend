@@ -18,6 +18,10 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'departments', loadChildren: () => import('src/app/pages/departments/departments.module').then(m => m.DepartmentsModule)},
     { path: 'headquarters', loadChildren: () => import('src/app/pages/headquarters/headquarters.module').then(m => m.HeadquartersModule)},
     { path: 'planesbyservice', loadChildren: () => import('src/app/pages/planesbyservice/planesbyservice.module').then(m => m.PlanesbyserviceModule)},
+    { path: 'administrators', loadChildren: () => import('src/app/pages/administrators/administrators.module').then(m => m.AdministratorsModule)},
+    { path: 'drivers', loadChildren: () => import('src/app/pages/drivers/drivers.module').then(m => m.DriversModule)},
+
+
 
 
 

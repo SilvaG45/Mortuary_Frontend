@@ -1,0 +1,34 @@
+import { Injectable, EventEmitter} from "@angular/core";
+import { Socket } from "ngx-socket-io";
+import { environment } from "src/environments/environment";
+
+
+@Injectable({
+  providedIn: "root",
+})
+export class WebSocketService extends Socket {
+  callback: EventEmitter<any> = new EventEmitter();
+  nameEvent: string;
+  constructor() {
+    super({
+      url: environment.url_ms_mortuary,
+      // options: {
+      //query:{
+      //     "id"."id-prueba"
+      //   }
+      // }
+    });
+
+    this.nameEvent = "";
+    this.listen();
+  }
+
+  setNameEvent(nameEvent: string) {
+    this.nameEvent = nameEvent;
+    this.listen();
+  }
+
+  listen = () => {
+    this.ioSocket.on(this.nameEvent, (res: any) => this.callback.emit(res));
+  };
+}

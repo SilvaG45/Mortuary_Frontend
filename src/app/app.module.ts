@@ -12,6 +12,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
+import { AdministratorModel } from './models/administrator/administrator.model';
+import { ListComponent } from './pages/administrators/list/list.component';
+import { ManageComponent } from './pages/drivers/manage/manage.component';
 
 
 @NgModule({
@@ -27,7 +30,10 @@ import { ComponentsModule } from './components/components.module';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    AdministratorModel,
+    ListComponent,
+    ManageComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
