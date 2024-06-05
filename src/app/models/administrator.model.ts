@@ -5,5 +5,5 @@ export class Administrator {
   user_id: string;
   responsibilities: string;
   status: number;
-  headquearters?: Headquarter[]
+  // headquearters?: Headquarter;
 }

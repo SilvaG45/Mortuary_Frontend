@@ -10,29 +10,27 @@ import { Driver } from "../models/driver.model";
 export class DriverService {
   constructor(private http: HttpClient) {}
 
-  list(): Observable<Driver []> {
-    return this.http.get<Driver []>(`${environment.url_ms_mortuary}/Driver s`);
+  list(): Observable<Driver[]> {
+    return this.http.get<Driver[]>(`${environment.url_ms_mortuary}/Driver`);
   }
-  view(id: number): Observable<Driver > {
-    return this.http.get<Driver >(
-      `${environment.url_ms_mortuary}/admnistrators/${id}`
+  view(id: number): Observable<Driver> {
+    return this.http.get<Driver>(`${environment.url_ms_mortuary}/Driver/${id}`);
+  }
+  create(theDriver: Driver): Observable<Driver> {
+    return this.http.post<Driver>(
+      `${environment.url_ms_mortuary}/Driver/`,
+      theDriver
     );
   }
-  create(theDriver : Driver ): Observable<Driver > {
-    return this.http.post<Driver >(
-      `${environment.url_ms_mortuary}/admnistrators/`,
-      theDriver 
-    );
-  }
-  update(theDriver : Driver ): Observable<Driver > {
-    return this.http.put<Driver >(
-      `${environment.url_ms_mortuary}/admnistrators/${theDriver .id}`,
-      theDriver 
+  update(theDriver: Driver): Observable<Driver> {
+    return this.http.put<Driver>(
+      `${environment.url_ms_mortuary}/Driver/${theDriver.id}`,
+      theDriver
     );
   }
   delete(id: number) {
-    return this.http.delete<Driver >(
-      `${environment.url_ms_mortuary}/admnistrators/${id}`
+    return this.http.delete<Driver>(
+      `${environment.url_ms_mortuary}/Driver/${id}`
     );
   }
 }

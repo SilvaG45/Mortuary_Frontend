@@ -35,8 +35,8 @@ export class ListComponent implements OnInit {
   }
   delete(id: number) {
     Swal.fire({
-      title: "Eliminar Estudiante",
-      text: "Está seguro que quiere eliminar el estudiante?",
+      title: "Eliminar administrador",
+      text: "Está seguro que quiere eliminar el administrador?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -47,7 +47,7 @@ export class ListComponent implements OnInit {
         this.service.delete(id).subscribe((data) => {
           Swal.fire(
             "Eliminado!",
-            "El estudiante ha sido eliminada correctamente",
+            "El administrador ha sido eliminada correctamente",
             "success"
           );
           this.ngOnInit();
