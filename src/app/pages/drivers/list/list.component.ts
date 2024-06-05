@@ -10,9 +10,9 @@ import Swal from "sweetalert2";
   styleUrls: ["./list.component.scss"],
 })
 export class ListComponent implements OnInit {
-  drivers: Driver[];
+  driver: Driver[];
   constructor(private service: DriverService, private router: Router) {
-    this.drivers = [];
+    this.driver = [];
   }
 
   ngOnInit(): void {
@@ -29,7 +29,7 @@ export class ListComponent implements OnInit {
   }
   list() {
     this.service.list().subscribe((data) => {
-      this.drivers = data;
+      this.driver = data;
     });
   }
   delete(id: number) {

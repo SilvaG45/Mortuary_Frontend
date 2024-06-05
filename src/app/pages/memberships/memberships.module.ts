@@ -1,19 +1,18 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
-import { MembershipsRoutingModule } from './memberships-routing.module';
-import { ListComponent } from './list/list.component';
-import { ManageComponent } from './manage/manage.component';
-
+import { MembershipsRoutingModule } from "./memberships-routing.module";
+import { ListComponent } from "./list/list.component";
+import { ManageComponent } from "./manage/manage.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
-  declarations: [
-    ListComponent,
-    ManageComponent
-  ],
+  declarations: [ListComponent, ManageComponent],
   imports: [
     CommonModule,
-    MembershipsRoutingModule
-  ]
+    MembershipsRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
-export class MembershipsModule { }
+export class MembershipsModule {}

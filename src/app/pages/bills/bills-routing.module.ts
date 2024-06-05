@@ -5,11 +5,11 @@ import { ListComponent } from "./list/list.component";
 
 const routes: Routes = [
   {
-    path: "/list",
+    path: "list",
     component: ListComponent,
   },
   {
-    path: "/create",
+    path: "create",
     component: ManageComponent,
   },
   {
@@ -17,7 +17,7 @@ const routes: Routes = [
     component: ManageComponent,
   },
   {
-    path: "/view/:id",
+    path: "view/:id",
     component: ManageComponent,
   },
 ];

@@ -1,5 +1,6 @@
-import { Router } from "@adonisjs/core/build/modules/http/main";
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { log } from "console";
 import { City } from "src/app/models/city.model";
 import { CityService } from "src/app/services/city.service";
 import Swal from "sweetalert2";
@@ -18,11 +19,18 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.list();
   }
-
+  view(id: number) {
+    this.router.navigate(["cities/view/" + id]);
+  }
+  create() {
+    this.router.navigate(["cities/create"]);
+  }
+  update(id: number) {
+    this.router.navigate(["cities/update/" + id]);
+  }
   list() {
     this.service.list().subscribe((data) => {
       this.cities = data;
-      console.log(JSON.stringify(this.cities));
     });
   }
   delete(id: number) {
@@ -38,7 +46,7 @@ export class ListComponent implements OnInit {
       if (result.isConfirmed) {
         this.service.delete(id).subscribe((data) => {
           Swal.fire(
-            "Eliminado!",
+            "Eliminada!",
             "La ciudad ha sido eliminada correctamente",
             "success"
           );

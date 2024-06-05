@@ -1,5 +1,6 @@
-import { Router } from "@adonisjs/core/build/modules/http/main";
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { log } from "console";
 import { PlanByService } from "src/app/models/plan-by-service.model";
 import { PlanByServiceService } from "src/app/services/planbyservice.service";
 import Swal from "sweetalert2";
@@ -10,19 +11,26 @@ import Swal from "sweetalert2";
   styleUrls: ["./list.component.scss"],
 })
 export class ListComponent implements OnInit {
-  planesbyservice: PlanByService[];
+  planByService: PlanByService[];
   constructor(private service: PlanByServiceService, private router: Router) {
-    this.planesbyservice = [];
+    this.planByService = [];
   }
 
   ngOnInit(): void {
     this.list();
   }
-
+  view(id: number) {
+    this.router.navigate(["planesByService/view/" + id]);
+  }
+  create() {
+    this.router.navigate(["planesByService/create"]);
+  }
+  update(id: number) {
+    this.router.navigate(["planesByService/update/" + id]);
+  }
   list() {
     this.service.list().subscribe((data) => {
-      this.planesbyservice = data;
-      console.log(JSON.stringify(this.planesbyservice));
+      this.planByService = data;
     });
   }
   delete(id: number) {
@@ -38,7 +46,7 @@ export class ListComponent implements OnInit {
       if (result.isConfirmed) {
         this.service.delete(id).subscribe((data) => {
           Swal.fire(
-            "Eliminado!",
+            "Eliminada!",
             "El plan por servicio ha sido eliminado correctamente",
             "success"
           );

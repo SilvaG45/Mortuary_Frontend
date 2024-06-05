@@ -1,9 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Headquarter } from "src/app/models/headquarter.model";
 import { Bill } from "src/app/models/bill.model";
-import { HeadquarterService } from "src/app/services/headquarter.service";
 import { BillService } from "src/app/services/bill.service";
 import Swal from "sweetalert2";
 
@@ -38,19 +41,17 @@ export class ManageComponent implements OnInit {
 
   configFormGroup() {
     this.theFormGroup = this.theFormBuilder.group({
-      customer_id: [0,
-         [
-        Validators.required
-      ]
-    ],
-      membership_id: ["",
-       [Validators.required]
+      customer_id: [0, [Validators.required]],
+      membership_id: ["", [Validators.required]],
+      price: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(10000),
+          Validators.maxLength(1000000),
+        ],
       ],
-      price: ["", 
-      [Validators.required, Validators.minLength(10000), Validators.maxLength(1000000)]
-    ],
-      status: ["",
-       [Validators.required]],
+      status: ["", [Validators.required]],
     });
   }
 

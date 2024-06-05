@@ -131,4 +131,25 @@ export const AdminLayoutRoutes: Routes = [
         (m) => m.ServicesModule
       ),
   },
+  {
+    path: "messages",
+    loadChildren: () =>
+      import("src/app/pages/messages/messages.module").then(
+        (m) => m.MessagesModule
+      ),
+  },
+  {
+    path: "chat-rooms",
+    loadChildren: () =>
+      import("src/app/pages/chat-rooms/chat-rooms.module").then(
+        (m) => m.ChatRoomsModule
+      ),
+  },
+  {
+    path: "comments-and-ratings",
+    loadChildren: () =>
+      import(
+        "src/app/pages/comments-and-ratings/comments-and-ratings.module"
+      ).then((m) => m.CommentsAndRatingsModule),
+  },
 ];

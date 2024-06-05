@@ -17,7 +17,7 @@ export class ManageComponent implements OnInit {
   trysend: boolean;
   constructor(
     private activateRoute: ActivatedRoute,
-    private service: PlanService, //se borro el formbuilder
+    private service: PlanService,
     private router: Router,
     private theFormBuilder: FormBuilder
   ) {
@@ -35,11 +35,34 @@ export class ManageComponent implements OnInit {
   }
   configFormGroup() {
     this.theFormGroup = this.theFormBuilder.group({
-      name: ["", [Validators.required]],
-      description: ["", [Validators.required]],
-      number_of_beneficiaries: [0, [Validators.required]],
-      price: [100000, [Validators.required]],
-      discount: [0, [Validators.required]],
+      name: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(20),
+        ],
+      ],
+      description: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(30),
+        ],
+      ],
+      number_of_beneficiaries: [
+        0,
+        [Validators.required, Validators.min(1), Validators.max(10)],
+      ],
+      price: [
+        100000,
+        [Validators.required, Validators.min(100000), Validators.max(1000000)],
+      ],
+      discount: [
+        0,
+        [Validators.required, Validators.min(0), Validators.max(100)],
+      ],
     });
   }
 
@@ -64,7 +87,7 @@ export class ManageComponent implements OnInit {
   }
   getPlan(id: number) {
     this.service.view(id).subscribe((data) => {
-      this.plan = data;
+      this.plan = data.data;
     });
   }
   create() {

@@ -7,5 +7,4 @@ export class Driver {
   phone_number: string;
   capacity: number;
   status: number;
-  driver_id?: number;
 }

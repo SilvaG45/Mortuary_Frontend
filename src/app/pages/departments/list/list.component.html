@@ -13,18 +13,17 @@
             <thead>
               <tr>
                 <th scope="col-1">ID</th>
-                <th scope="col-2">Name</th>
-                <th scope="col-4">Location</th>
-                <th scope="col-1">Status</th>
-                <th scope="col-5">Opciones</th>
+                <th scope="col-2">name</th>
+                <th scope="col-4">location</th>
+                <th scope="col-1">status</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let actual of departments">
                 <td>{{ actual.ID }}</td>
-                <td>{{ actual.Name }}</td>
-                <td>{{ actual.Location }}</td>
-                <td>{{ actual.Status }}</td>
+                <td>{{ actual.name }}</td>
+                <td>{{ actual.location }}</td>
+                <td>{{ actual.status }}</td>
                 <td>
                   <button
                     type="button"

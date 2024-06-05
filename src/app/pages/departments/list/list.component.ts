@@ -1,5 +1,6 @@
-import { Router } from "@adonisjs/core/build/modules/http/main";
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { log } from "console";
 import { Department } from "src/app/models/department.model";
 import { DepartmentService } from "src/app/services/department.service";
 import Swal from "sweetalert2";
@@ -11,18 +12,25 @@ import Swal from "sweetalert2";
 })
 export class ListComponent implements OnInit {
   departments: Department[];
-  constructor(private service: DepartmentService, private router:Router) {
+  constructor(private service: DepartmentService, private router: Router) {
     this.departments = [];
   }
 
   ngOnInit(): void {
     this.list();
   }
-
+  view(id: number) {
+    this.router.navigate(["departments/view/" + id]);
+  }
+  create() {
+    this.router.navigate(["departments/create"]);
+  }
+  update(id: number) {
+    this.router.navigate(["departments/update/" + id]);
+  }
   list() {
     this.service.list().subscribe((data) => {
       this.departments = data;
-      console.log(JSON.stringify(this.departments));
     });
   }
   delete(id: number) {
@@ -38,8 +46,8 @@ export class ListComponent implements OnInit {
       if (result.isConfirmed) {
         this.service.delete(id).subscribe((data) => {
           Swal.fire(
-            "Eliminado!",
-            "El departamento ha sido eliminada correctamente",
+            "Eliminada!",
+            "El departamento ha sido eliminado correctamente",
             "success"
           );
           this.ngOnInit();

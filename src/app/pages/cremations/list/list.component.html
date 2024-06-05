@@ -14,13 +14,13 @@
               <tr>
                 <th scope="col-1">ID</th>
                 <th scope="col-2">service_id</th>
-                <th scope="col-5w">room_id</th>
+                <th scope="col-5">room_id</th>
                 <th scope="col-1">cremation_date</th>
                 <th scope="col-1">status</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let actual of bills">
+              <tr *ngFor="let actual of cremation">
                 <td>{{ actual.ID }}</td>
                 <td>{{ actual.service_id }}</td>
                 <td>{{ actual.room_id }}</td>

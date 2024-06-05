@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Headquarter } from "src/app/models/headquarter.model";
+// import { Headquarter } from "src/app/models/headquarter.model";
 import { Administrator } from "src/app/models/administrator.model";
 import { HeadquarterService } from "src/app/services/headquarter.service";
 import { AdministratorService } from "src/app/services/administrator.service";
@@ -17,13 +17,13 @@ export class ManageComponent implements OnInit {
   administrator: Administrator;
   theFormGroup: FormGroup;
   trySend: boolean;
-  headquarter: Headquarter[];
+  // headquarter: Headquarter[];
   constructor(
     private activateRoute: ActivatedRoute,
     private theFormBuilder: FormBuilder,
     private service: AdministratorService,
     private router: Router,
-    private headquarterService: HeadquarterService
+    // private headquarterService: HeadquarterService
   ) {
     this.trySend = false;
     this.mode = 1;
@@ -31,25 +31,25 @@ export class ManageComponent implements OnInit {
     this.administrator = {
       id: 0,
       user_id: "",
-      responsibilities: "",
+      responsabilities: "",
       status: 1,
     };
-    this.headquarterList();
+    // this.headquarterList();
     this.configFormGroup();
   }
 
-  headquarterList() {
-    this.headquarterService.list().subscribe((data) => {
-      this.headquarter = data;
-    });
-  }
+  // headquarterList() {
+  //   this.headquarterService.list().subscribe((data) => {
+  //     this.headquarter = data;
+  //   });
+  // }
 
   configFormGroup() {
     this.theFormGroup = this.theFormBuilder.group({
       user_id: [0,[Validators.required],],
       responsabilities: ["", [Validators.required, Validators.minLength(1), Validators.maxLength(120)]],
       status: ["", [Validators.required, Validators.minLength(2)]],
-      idHeadquarter: [null, [Validators.required]],
+      // idHeadquarter: [null, [Validators.required]],
     });
   }
 

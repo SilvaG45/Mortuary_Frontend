@@ -15,6 +15,7 @@ export class ManageComponent implements OnInit {
   beneficiarie: Beneficiarie;
   theFormGroup: FormGroup;
   trysend: boolean;
+
   constructor(
     private activateRoute: ActivatedRoute,
     private service: BeneficiarieService,
@@ -33,19 +34,36 @@ export class ManageComponent implements OnInit {
     };
     this.configFormGroup();
   }
+
   configFormGroup() {
     this.theFormGroup = this.theFormBuilder.group({
-      customer_id: [0, [Validators.required]],
-      holder_id: [0, [Validators.required]],
-      isprincipal_beneficiarie: [false, [Validators.required]],
-      is_emergy_contact: [false, [Validators.required]],
-      status: [0, [Validators.required, Validators.min(0), Validators.max(1)]],
+      customer_id: [
+        { value: 0, disabled: this.mode === 1 },
+        [Validators.required],
+      ],
+      holder_id: [
+        { value: 0, disabled: this.mode === 1 },
+        [Validators.required],
+      ],
+      isprincipal_beneficiarie: [
+        { value: false, disabled: this.mode === 1 },
+        [Validators.required],
+      ],
+      is_emergy_contact: [
+        { value: false, disabled: this.mode === 1 },
+        [Validators.required],
+      ],
+      status: [
+        { value: 0, disabled: this.mode === 1 },
+        [Validators.required, Validators.min(0), Validators.max(1)],
+      ],
     });
   }
 
   get getTheFormGroup() {
     return this.theFormGroup.controls;
   }
+
   ngOnInit(): void {
     const currentUrl = this.activateRoute.snapshot.url.join("/");
 
@@ -60,14 +78,15 @@ export class ManageComponent implements OnInit {
       this.beneficiarie.id = this.activateRoute.snapshot.params.id;
       this.getBeneficiarie(this.beneficiarie.id);
     }
+    this.configFormGroup();
   }
-  getBeneficiarie(id: number) {
-    this.service.view(id).subscribe((data) => {
-      console.log(JSON.stringify(data));
 
-      this.beneficiarie = data.data;
+  getBeneficiarie(id: number) {
+    this.service.view(id).subscribe((response) => {
+      this.beneficiarie = response.data;
     });
   }
+
   create() {
     if (this.theFormGroup.invalid) {
       this.trysend = true;
@@ -78,6 +97,7 @@ export class ManageComponent implements OnInit {
       );
       return;
     }
+    this.beneficiarie = { ...this.beneficiarie, ...this.theFormGroup.value };
     this.service.create(this.beneficiarie).subscribe((data) => {
       Swal.fire(
         "Creación Exitosa",
@@ -87,6 +107,7 @@ export class ManageComponent implements OnInit {
       this.router.navigate(["beneficiaries/list"]);
     });
   }
+
   update() {
     if (this.theFormGroup.invalid) {
       this.trysend = true;
@@ -97,13 +118,14 @@ export class ManageComponent implements OnInit {
       );
       return;
     }
+    this.beneficiarie = { ...this.beneficiarie, ...this.theFormGroup.value };
     this.service.update(this.beneficiarie).subscribe((data) => {
       Swal.fire(
         "Actualización Exitosa",
         "Se ha actualizado un nuevo registro",
         "success"
       );
-      this.router.navigate(["beneficiarie/list"]);
+      this.router.navigate(["beneficiaries/list"]);
     });
   }
 }

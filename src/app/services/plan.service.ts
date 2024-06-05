@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { Plan, ResponsePlan } from "../models/plan.model";
+import { Plan, ResponseOnePlan, ResponsePlan } from "../models/plan.model";
 import { environment } from "src/environments/environment";
 
 @Injectable({
@@ -12,14 +12,19 @@ export class PlanService {
   list(): Observable<ResponsePlan> {
     return this.http.get<ResponsePlan>(`${environment.url_ms_cinema}/Plans`);
   }
-  view(id: number): Observable<Plan> {
-    return this.http.get<Plan>(`${environment.url_ms_cinema}/Plans/${id}`);
+  view(id: number): Observable<ResponseOnePlan> {
+    return this.http.get<ResponseOnePlan>(
+      `${environment.url_ms_cinema}/Plans/${id}`
+    );
   }
-  create(thePlan: Plan): Observable<Plan> {
-    return this.http.post<Plan>(`${environment.url_ms_cinema}/Plans/`, thePlan);
+  create(thePlan: Plan): Observable<ResponseOnePlan> {
+    return this.http.post<ResponseOnePlan>(
+      `${environment.url_ms_cinema}/Plans/`,
+      thePlan
+    );
   }
-  update(thePlan: Plan): Observable<Plan> {
-    return this.http.put<Plan>(
+  update(thePlan: Plan): Observable<ResponseOnePlan> {
+    return this.http.put<ResponseOnePlan>(
       `${environment.url_ms_cinema}/Plans/${thePlan.id}`,
       thePlan
     );

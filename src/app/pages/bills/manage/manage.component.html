@@ -70,43 +70,44 @@
                     >
                   </div>
                 </div>
-                <div class="row">
-                    <div class="col-4">Price:</div>
-                    <div class="col-8">
-                      <input
-                        type="text"
-                        class="form-control"
-                        [(ngModel)]="bill.price"
-                        [disabled]="mode == 1"
-                        formControlName="price"
-                      />
-                      <div
-                        *ngIf="
-                          getTheFormGroup.price.errors &&
-                          (getTheFormGroup.price.dirty ||
-                            getTheFormGroup.price.touched ||
-                            trySend)
-                        "
-                      >
-                        <strong
-                          *ngIf="getTheFormGroup.price.errors.required"
-                          class="msnError"
-                          >Requerido</strong
-                        >
-                        <strong
-                          *ngIf="getTheFormGroup.price.errors.min"
-                          class="msnError"
-                          >Valor mínimo debe ser 10000</strong
-                        >
-                        <strong
-                          *ngIf="getTheFormGroup.price.errors.max"
-                          class="msnError"
-                          >Valor máximo debe ser 1000000</strong
-                        >
-                      </div>
-                    </div>
-              </div>
-              <div class="row">
+              </div> <!-- Cierra el div.row de Membership_id -->
+              <div class="row"> <!-- Nueva fila para Price -->
+                <div class="col-4">Price:</div>
+                <div class="col-8">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="bill.price"
+                    [disabled]="mode == 1"
+                    formControlName="price"
+                  />
+                  <div
+                    *ngIf="
+                      getTheFormGroup.price.errors &&
+                      (getTheFormGroup.price.dirty ||
+                        getTheFormGroup.price.touched ||
+                        trySend)
+                    "
+                  >
+                    <strong
+                      *ngIf="getTheFormGroup.price.errors.required"
+                      class="msnError"
+                      >Requerido</strong
+                    >
+                    <strong
+                      *ngIf="getTheFormGroup.price.errors.min"
+                      class="msnError"
+                      >Valor mínimo debe ser 10000</strong
+                    >
+                    <strong
+                      *ngIf="getTheFormGroup.price.errors.max"
+                      class="msnError"
+                      >Valor máximo debe ser 1000000</strong
+                    >
+                  </div>
+                </div>
+              </div> <!-- Cierra el div.row de Price -->
+              <div class="row"> <!-- Nueva fila para Status -->
                 <div class="col-4">Status:</div>
                 <div class="col-8">
                   <input
@@ -131,7 +132,7 @@
                     >
                   </div>
                 </div>
-          </div>
+              </div> <!-- Cierra el div.row de Status -->
               <div class="row">
                 <div class="col-4"></div>
                 <div class="col-8">

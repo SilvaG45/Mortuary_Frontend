@@ -13,18 +13,17 @@
             <thead>
               <tr>
                 <th scope="col-1">ID</th>
-                <th scope="col-2">PlanID</th>
-                <th scope="col-4">ServiceID</th>
-                <th scope="col-1">Date</th>
-                <th scope="col-5">Opciones</th>
+                <th scope="col-2">plan_id</th>
+                <th scope="col-4">service_id</th>
+                <th scope="col-1">date</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let actual of planesbyservice">
+              <tr *ngFor="let actual of planByService">
                 <td>{{ actual.ID }}</td>
-                <td>{{ actual.PlanID }}</td>
-                <td>{{ actual.ServiceID }}</td>
-                <td>{{ actual.Date }}</td>
+                <td>{{ actual.plan_id }}</td>
+                <td>{{ actual.service_id }}</td>
+                <td>{{ actual.date }}</td>
                 <td>
                   <button
                     type="button"

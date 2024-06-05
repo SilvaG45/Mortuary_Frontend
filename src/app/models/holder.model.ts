@@ -1,9 +1,21 @@
+import { Beneficiarie } from "./beneficiarie.model";
 import { Customer } from "./customer.model";
 
 export class Holder {
   id?: number;
-  customer_id?: number;
-  customer?: Customer;
+  customer_id: number;
   status: number;
-  holders?: Holder[];
+  customer?: Customer;
+  beneficiaries?: Beneficiarie[];
+  // chatRooms?: ChatRoom[]
+}
+
+export interface ResponseHolder {
+  message: string;
+  data: Holder[];
+}
+
+export interface ResponseOneHolder {
+  message: string;
+  data: Holder;
 }
