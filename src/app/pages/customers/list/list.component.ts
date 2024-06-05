@@ -43,12 +43,14 @@ export class ListComponent implements OnInit {
       confirmButtonText: "Si, eliminar",
     }).then((result) => {
       if (result.isConfirmed) {
+        console.log(id);
         this.service.delete(id).subscribe((data) => {
           Swal.fire(
             "Eliminado!",
             "El Cliente ha sido eliminado correctamente",
             "success"
           );
+          console.log(data);
           this.ngOnInit();
         });
       }

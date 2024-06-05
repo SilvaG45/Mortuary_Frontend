@@ -20,6 +20,32 @@
                 </div>
               </div>
               <div class="row">
+                <div class="col-4">service_id</div>
+                <div class="col-8">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="serviceExecution.service_id"
+                    [disabled]="mode == 1"
+                    formControlName="service_id"
+                  />
+                  <div
+                    *ngIf="
+                      getTheFormGroup.service_id.errors &&
+                      (getTheFormGroup.service_id.dirty ||
+                        getTheFormGroup.service_id.touched ||
+                        trysend)
+                    "
+                  >
+                    <strong
+                      *ngIf="getTheFormGroup.service_id.errors.required"
+                      class="msnError"
+                      >Requerido</strong
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="row">
                 <div class="col-4">Customer_id:</div>
                 <div class="col-8">
                   <input
@@ -39,6 +65,58 @@
                   >
                     <strong
                       *ngIf="getTheFormGroup.customer_id.errors.required"
+                      class="msnError"
+                      >Requerido</strong
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4">Driver_id:</div>
+                <div class="col-8">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="serviceExecution.driver_id"
+                    [disabled]="mode == 1"
+                    formControlName="driver_id"
+                  />
+                  <div
+                    *ngIf="
+                      getTheFormGroup.driver_id.errors &&
+                      (getTheFormGroup.driver_id.dirty ||
+                        getTheFormGroup.driver_id.touched ||
+                        trysend)
+                    "
+                  >
+                    <strong
+                      *ngIf="getTheFormGroup.driver_id.errors.required"
+                      class="msnError"
+                      >Requerido</strong
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4">Room_id:</div>
+                <div class="col-8">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="serviceExecution.room_id"
+                    [disabled]="mode == 1"
+                    formControlName="room_id"
+                  />
+                  <div
+                    *ngIf="
+                      getTheFormGroup.room_id.errors &&
+                      (getTheFormGroup.room_id.dirty ||
+                        getTheFormGroup.room_id.touched ||
+                        trysend)
+                    "
+                  >
+                    <strong
+                      *ngIf="getTheFormGroup.room_id.errors.required"
                       class="msnError"
                       >Requerido</strong
                     >

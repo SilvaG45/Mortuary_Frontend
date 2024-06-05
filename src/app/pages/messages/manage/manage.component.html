@@ -16,29 +16,29 @@
               <div class="row">
                 <div class="col-4">Id:</div>
                 <div class="col-8">
-                  {{ services.id }}
+                  {{ message.id }}
                 </div>
               </div>
               <div class="row">
-                <div class="col-4">Body_ubication:</div>
+                <div class="col-4">User_id:</div>
                 <div class="col-8">
                   <input
                     type="text"
                     class="form-control"
-                    [(ngModel)]="services.body_ubication"
+                    [(ngModel)]="message.user_id"
                     [disabled]="mode == 1"
-                    formControlName="body_ubication"
+                    formControlName="user_id"
                   />
                   <div
                     *ngIf="
-                      getTheFormGroup.body_ubication.errors &&
-                      (getTheFormGroup.body_ubication.dirty ||
-                        getTheFormGroup.body_ubication.touched ||
+                      getTheFormGroup.user_id.errors &&
+                      (getTheFormGroup.user_id.dirty ||
+                        getTheFormGroup.user_id.touched ||
                         trysend)
                     "
                   >
                     <strong
-                      *ngIf="getTheFormGroup.body_ubication.errors.required"
+                      *ngIf="getTheFormGroup.user_id.errors.required"
                       class="msnError"
                       >Requerido</strong
                     >
@@ -46,25 +46,25 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-4">Need_trip:</div>
+                <div class="col-4">ChatRoom_id:</div>
                 <div class="col-8">
                   <input
                     type="text"
                     class="form-control"
-                    [(ngModel)]="services.need_trip"
-                    [disabled]="mode == 1"
-                    formControlName="need_trip"
+                    [(ngModel)]="message.chat_room_id"
+                    [disabled]="mode == 1 || 3"
+                    formControlName="chat_room_id"
                   />
                   <div
                     *ngIf="
-                      getTheFormGroup.need_trip.errors &&
-                      (getTheFormGroup.need_trip.dirty ||
-                        getTheFormGroup.need_trip.touched ||
+                      getTheFormGroup.chat_room_id.errors &&
+                      (getTheFormGroup.chat_room_id.dirty ||
+                        getTheFormGroup.chat_room_id.touched ||
                         trysend)
                     "
                   >
                     <strong
-                      *ngIf="getTheFormGroup.need_trip.errors.required"
+                      *ngIf="getTheFormGroup.chat_room_id.errors.required"
                       class="msnError"
                       >Requerido</strong
                     >
@@ -72,12 +72,64 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-4">status:</div>
+                <div class="col-4">Mensaje:</div>
                 <div class="col-8">
                   <input
                     type="text"
                     class="form-control"
-                    [(ngModel)]="services.status"
+                    [(ngModel)]="message.message"
+                    [disabled]="mode == 1"
+                    formControlName="message"
+                  />
+                  <div
+                    *ngIf="
+                      getTheFormGroup.message.errors &&
+                      (getTheFormGroup.message.dirty ||
+                        getTheFormGroup.message.touched ||
+                        trysend)
+                    "
+                  >
+                    <strong
+                      *ngIf="getTheFormGroup.message.errors.required"
+                      class="msnError"
+                      >Requerido</strong
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="row">
+                <div class="col-4">Fecha:</div>
+                <div class="col-8">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="message.date"
+                    [disabled]="mode == 1"
+                    formControlName="date"
+                  />
+                  <div
+                    *ngIf="
+                      getTheFormGroup.date.errors &&
+                      (getTheFormGroup.date.dirty ||
+                        getTheFormGroup.date.touched ||
+                        trysend)
+                    "
+                  >
+                    <strong
+                      *ngIf="getTheFormGroup.date.errors.required"
+                      class="msnError"
+                      >Requerido</strong
+                    >
+                  </div>
+                </div>
+              </div> -->
+              <div class="row">
+                <div class="col-4">Status:</div>
+                <div class="col-8">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="message.status"
                     [disabled]="mode == 1"
                     formControlName="status"
                   />

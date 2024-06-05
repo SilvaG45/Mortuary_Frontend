@@ -15,6 +15,7 @@ export class ManageComponent implements OnInit {
   customer: Customer;
   theFormGroup: FormGroup;
   trysend: boolean;
+
   constructor(
     private activateRoute: ActivatedRoute,
     private service: CustomerService,
@@ -34,10 +35,17 @@ export class ManageComponent implements OnInit {
     };
     this.configFormGroup();
   }
+
   configFormGroup() {
     this.theFormGroup = this.theFormBuilder.group({
-      user_id: ["", [Validators.required]],
-      status: [0, [Validators.required, Validators.min(0), Validators.max(1)]],
+      user_id: [
+        { value: "", disabled: this.mode === 1 },
+        [Validators.required],
+      ],
+      status: [
+        { value: 0, disabled: this.mode === 1 },
+        [Validators.required, Validators.min(0), Validators.max(1)],
+      ],
       // holders: [[], []],
       // beneficiaries: [[], []],
       // plans: [[], []],
@@ -62,13 +70,30 @@ export class ManageComponent implements OnInit {
     if (this.activateRoute.snapshot.params.id) {
       this.customer.id = this.activateRoute.snapshot.params.id;
       this.getCustomer(this.customer.id);
+    } else {
+      this.updateFormState();
     }
   }
+
   getCustomer(id: number) {
     this.service.view(id).subscribe((response) => {
       this.customer = response.data;
+      this.theFormGroup.patchValue(this.customer);
+      this.updateFormState();
     });
   }
+
+  updateFormState() {
+    if (this.mode === 1) {
+      this.theFormGroup.disable();
+    } else {
+      this.theFormGroup.enable();
+      if (this.mode === 3) {
+        this.theFormGroup.get("user_id").disable();
+      }
+    }
+  }
+
   create() {
     if (this.theFormGroup.invalid) {
       this.trysend = true;
@@ -79,6 +104,7 @@ export class ManageComponent implements OnInit {
       );
       return;
     }
+    this.customer = { ...this.customer, ...this.theFormGroup.value };
     this.service.create(this.customer).subscribe((data) => {
       Swal.fire(
         "Creación Exitosa",
@@ -88,6 +114,7 @@ export class ManageComponent implements OnInit {
       this.router.navigate(["customers/list"]);
     });
   }
+
   update() {
     if (this.theFormGroup.invalid) {
       this.trysend = true;
@@ -98,6 +125,7 @@ export class ManageComponent implements OnInit {
       );
       return;
     }
+    this.customer = { ...this.customer, ...this.theFormGroup.value };
     this.service.update(this.customer).subscribe((data) => {
       Swal.fire(
         "Actualización Exitosa",

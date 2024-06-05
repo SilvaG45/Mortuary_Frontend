@@ -8,7 +8,7 @@
         <div class="card-header bg-transparent">
           <div class="row">
             <div class="col-3">
-              <h3 class="mb-0">Membresías</h3>
+              <h3 class="mb-0">Chat-Rooms</h3>
             </div>
             <div class="col-6"></div>
             <div class="col-3">
@@ -23,19 +23,21 @@
               <thead>
                 <tr>
                   <th class="col-1">ID</th>
+                  <th class="col-3">Servicio en ejecución_id</th>
+                  <th class="col-3">Titular_id</th>
                   <th class="col-3">Nombre</th>
-                  <th class="col-3">Customer_id</th>
-                  <th class="col-3">Plan_id</th>
-                  <th class="col-3">status</th>
+                  <th class="col-3">Código</th>
+                  <th class="col-3">Status</th>
                   <th class="col-5">Opciones</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let actual of membership">
+                <tr *ngFor="let actual of chatRooms">
                   <td>{{ actual.id }}</td>
+                  <td>{{ actual.service_execution_id }}</td>
+                  <td>{{ actual.holder_id }}</td>
                   <td>{{ actual.name }}</td>
-                  <td>{{ actual.customer_id }}</td>
-                  <td>{{ actual.plan_id }}</td>
+                  <td>{{ actual.code }}</td>
                   <td>{{ actual.status }}</td>
                   <td>
                     <button

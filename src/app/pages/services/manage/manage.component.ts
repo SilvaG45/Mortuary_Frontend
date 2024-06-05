@@ -33,10 +33,11 @@ export class ManageComponent implements OnInit {
     this.configFormGroup();
   }
   configFormGroup() {
+    const isDisabled = this.mode === 1;
     this.theFormGroup = this.theFormBuilder.group({
-      body_ubication: ["", [Validators.required, Validators.minLength(5)]],
-      need_trip: [false, [Validators.required]],
-      status: [0, [Validators.required, Validators.min(0), Validators.max(1)]],
+      body_ubication: [{ value: "", disabled: isDisabled }, [Validators.required, Validators.minLength(5)]],
+      need_trip: [{ value: false, disabled: isDisabled }, [Validators.required]],
+      status: [{ value: 0, disabled: isDisabled }, [Validators.required, Validators.min(0), Validators.max(1)]],
     });
   }
 
@@ -57,6 +58,7 @@ export class ManageComponent implements OnInit {
       this.services.id = this.activateRoute.snapshot.params.id;
       this.getService(this.services.id);
     }
+    this.configFormGroup(); // Reconfigura el formulario después de establecer el modo
   }
   getService(id: number) {
     this.service.view(id).subscribe((response) => {
