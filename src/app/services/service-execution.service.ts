@@ -23,18 +23,14 @@ export class ServiceExecutionService {
       `${environment.url_ms_cinema}/ServiceExecutions/${id}`
     );
   }
-  create(
-    ServiceExecution: ServiceExecution
-  ): Observable<ResponeOneServiceExecution> {
-    return this.http.post<ResponeOneServiceExecution>(
+  create(ServiceExecution: ServiceExecution): Observable<ServiceExecution> {
+    return this.http.post<ServiceExecution>(
       `${environment.url_ms_cinema}/ServiceExecutions/`,
       ServiceExecution
     );
   }
-  update(
-    ServiceExecution: ServiceExecution
-  ): Observable<ResponeOneServiceExecution> {
-    return this.http.put<ResponeOneServiceExecution>(
+  update(ServiceExecution: ServiceExecution): Observable<ServiceExecution> {
+    return this.http.put<ServiceExecution>(
       `${environment.url_ms_cinema}/ServiceExecutions/${ServiceExecution.id}`,
       ServiceExecution
     );

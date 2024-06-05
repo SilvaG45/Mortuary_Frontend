@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { Membership } from "src/app/models/membership.model";
-import { MembershipService } from "src/app/services/membership.service";
+import { Message } from "src/app/models/message.model";
+import { MessageService } from "src/app/services/message.service";
 import Swal from "sweetalert2";
 
 @Component({
@@ -10,32 +10,33 @@ import Swal from "sweetalert2";
   styleUrls: ["./list.component.scss"],
 })
 export class ListComponent implements OnInit {
-  membership: Membership[];
-  constructor(private service: MembershipService, private router: Router) {
-    this.membership = [];
+  messages: Message[];
+  constructor(private service: MessageService, private router: Router) {
+    this.messages = [];
   }
 
   ngOnInit(): void {
     this.list();
   }
   view(id: number) {
-    this.router.navigate(["memberships/view/" + id]);
+    this.router.navigate(["messages/view/" + id]);
   }
   create() {
-    this.router.navigate(["memberships/create"]);
+    this.router.navigate(["messages/create"]);
   }
   update(id: number) {
-    this.router.navigate(["memberships/update/" + id]);
+    this.router.navigate(["messages/update/" + id]);
   }
   list() {
     this.service.list().subscribe((response) => {
-      this.membership = response.data;
+      console.log(JSON.stringify(response.data));
+      this.messages = response.data.data;
     });
   }
   delete(id: number) {
     Swal.fire({
-      title: "Eliminar Membresía",
-      text: "Está seguro que quiere eliminar el Membresía?",
+      title: "Eliminar Mensaje",
+      text: "Está seguro que quiere eliminar el Mensaje?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -46,7 +47,7 @@ export class ListComponent implements OnInit {
         this.service.delete(id).subscribe((data) => {
           Swal.fire(
             "Eliminado!",
-            "El Membresía ha sido eliminado correctamente",
+            "El Mensaje ha sido eliminado correctamente",
             "success"
           );
           this.ngOnInit();

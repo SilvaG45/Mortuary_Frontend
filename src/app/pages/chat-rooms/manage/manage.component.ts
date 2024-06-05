@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ServiceExecution } from "src/app/models/service-execution.model";
-import { ServiceExecutionService } from "src/app/services/service-execution.service";
+import { ChatRoom } from "src/app/models/chat-room.model";
+import { ChatRoomService } from "src/app/services/chat-room.service";
 import Swal from "sweetalert2";
 
 @Component({
@@ -12,43 +12,41 @@ import Swal from "sweetalert2";
 })
 export class ManageComponent implements OnInit {
   mode: number; // 1->view, 2->Create, 3->Update
-  serviceExecution: ServiceExecution;
+  chatRoom: ChatRoom;
   theFormGroup: FormGroup;
   trysend: boolean;
   constructor(
     private activateRoute: ActivatedRoute,
-    private service: ServiceExecutionService,
+    private service: ChatRoomService,
     private router: Router,
     private theFormBuilder: FormBuilder
   ) {
     this.trysend = false;
     this.mode = 1;
-    this.serviceExecution = {
+    this.chatRoom = {
       id: 0,
-      service_id: 0,
-      customer_id: 0,
-      driver_id: 0,
-      room_id: 0,
-      main_office: "",
-      location: "",
+      service_execution_id: 0,
+      holder_id: 0,
+      name: "",
+      code: "",
       status: 0,
     };
     this.configFormGroup();
   }
-
   configFormGroup() {
-    const isDisabled = this.mode === 1;
     this.theFormGroup = this.theFormBuilder.group({
-      service_id: [{ value: 0, disabled: isDisabled }, [Validators.required]],
-      customer_id: [{ value: 0, disabled: isDisabled }, [Validators.required]],
-      driver_id: [{ value: 0, disabled: isDisabled }, [Validators.required]],
-
-      room_id: [{ value: 0, disabled: isDisabled }, [Validators.required]],
-
-      main_office: [{ value: "", disabled: isDisabled }, [Validators.required]],
-      location: [{ value: "", disabled: isDisabled }, [Validators.required]],
+      service_execution_id: [
+        { value: 0, disabled: this.mode === 1 },
+        [Validators.required],
+      ],
+      holder_id: [
+        { value: 0, disabled: this.mode === 1 },
+        [Validators.required],
+      ],
+      name: [{ value: "", disabled: this.mode === 1 }, [Validators.required]],
+      code: [{ value: "", disabled: this.mode === 1 }, [Validators.required]],
       status: [
-        { value: 0, disabled: isDisabled },
+        { value: 0, disabled: this.mode === 1 },
         [Validators.required, Validators.min(0), Validators.max(1)],
       ],
     });
@@ -69,18 +67,16 @@ export class ManageComponent implements OnInit {
       this.mode = 3;
     }
     if (this.activateRoute.snapshot.params.id) {
-      this.serviceExecution.id = this.activateRoute.snapshot.params.id;
-      this.getBeneficiarie(this.serviceExecution.id);
+      this.chatRoom.id = this.activateRoute.snapshot.params.id;
+      this.getchatRoom(this.chatRoom.id);
     }
-    this.configFormGroup(); // Reconfigura el formulario después de establecer el modo
+    this.configFormGroup();
   }
-
-  getBeneficiarie(id: number) {
-    this.service.view(id).subscribe((response) => {
-      this.serviceExecution = response.data;
+  getchatRoom(id: number) {
+    this.service.view(id).subscribe((data) => {
+      this.chatRoom = data;
     });
   }
-
   create() {
     if (this.theFormGroup.invalid) {
       this.trysend = true;
@@ -91,16 +87,15 @@ export class ManageComponent implements OnInit {
       );
       return;
     }
-    this.service.create(this.serviceExecution).subscribe((data) => {
+    this.service.create(this.chatRoom).subscribe((data) => {
       Swal.fire(
         "Creación Exitosa",
         "Se ha creado un nuevo registro",
         "success"
       );
-      this.router.navigate(["service-executions/list"]);
+      this.router.navigate(["chat-rooms/list"]);
     });
   }
-
   update() {
     if (this.theFormGroup.invalid) {
       this.trysend = true;
@@ -111,13 +106,13 @@ export class ManageComponent implements OnInit {
       );
       return;
     }
-    this.service.update(this.serviceExecution).subscribe((data) => {
+    this.service.update(this.chatRoom).subscribe((data) => {
       Swal.fire(
         "Actualización Exitosa",
         "Se ha actualizado un nuevo registro",
         "success"
       );
-      this.router.navigate(["service-executions/list"]);
+      this.router.navigate(["chat-rooms/list"]);
     });
   }
 }

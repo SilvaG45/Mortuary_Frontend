@@ -3,20 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Servicios en Ejecución</title>
+    <title>Mensajes</title>
   </head>
   <body>
     <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8"></div>
-    <!-- Page content -->
     <div class="container-fluid mt--7">
-      <!-- Table -->
       <div class="row">
         <div class="col">
           <div class="card shadow">
             <div class="card-header bg-transparent">
               <div class="row">
                 <div class="col-3">
-                  <h3 class="mb-0 small-text">Servicios en Ejecución</h3>
+                  <h3 class="mb-0 small-text">Mensajes</h3>
                 </div>
                 <div class="col-6"></div>
                 <div class="col-3">
@@ -34,25 +32,21 @@
                   <thead>
                     <tr>
                       <th class="col-1">ID</th>
-                      <th class="col-3">service_id</th>
-                      <th class="col-3">customer_id</th>
-                      <th class="col-3">driver_id</th>
-                      <th class="col-3">room_id</th>
-                      <th class="col-3">main_office</th>
-                      <th class="col-3">location</th>
+                      <th class="col-3">User_id</th>
+                      <th class="col-3">ChatRoom_id</th>
+                      <th class="col-3">Mensaje</th>
+                      <!-- <th class="col-3">Fecha</th> -->
                       <th class="col-3">status</th>
                       <th class="col-5">Opciones</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let actual of serviceExecution">
+                    <tr *ngFor="let actual of messages">
                       <td>{{ actual.id }}</td>
-                      <td>{{ actual.service_id }}</td>
-                      <td>{{ actual.customer_id }}</td>
-                      <td>{{ actual.driver_id }}</td>
-                      <td>{{ actual.room_id }}</td>
-                      <td>{{ actual.main_office }}</td>
-                      <td>{{ actual.location }}</td>
+                      <td>{{ actual.user_id }}</td>
+                      <td>{{ actual.chat_room_id }}</td>
+                      <td>{{ actual.message }}</td>
+                      <!-- <td>{{ actual.date }}</td> -->
                       <td>{{ actual.status }}</td>
                       <td>
                         <button

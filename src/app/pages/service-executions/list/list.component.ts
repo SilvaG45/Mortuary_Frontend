@@ -32,7 +32,8 @@ export class ListComponent implements OnInit {
   }
   list() {
     this.service.list().subscribe((response) => {
-      this.serviceExecution = response.data;
+      console.log(JSON.stringify(response));
+      this.serviceExecution = response.data.data;
     });
   }
   delete(id: number) {
