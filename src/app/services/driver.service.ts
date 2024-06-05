@@ -11,20 +11,20 @@ export class DriverService {
   constructor(private http: HttpClient) {}
 
   list(): Observable<Driver[]> {
-    return this.http.get<Driver[]>(`${environment.url_ms_mortuary}/Driver`);
+    return this.http.get<Driver[]>(`${environment.url_ms_mortuary}/Drivers`);
   }
   view(id: number): Observable<Driver> {
-    return this.http.get<Driver>(`${environment.url_ms_mortuary}/Driver/${id}`);
+    return this.http.get<Driver>(`${environment.url_ms_mortuary}/Drivers/${id}`);
   }
   create(theDriver: Driver): Observable<Driver> {
     return this.http.post<Driver>(
-      `${environment.url_ms_mortuary}/Driver/`,
+      `${environment.url_ms_mortuary}/Drivers/`,
       theDriver
     );
   }
   update(theDriver: Driver): Observable<Driver> {
     return this.http.put<Driver>(
-      `${environment.url_ms_mortuary}/Driver/${theDriver.id}`,
+      `${environment.url_ms_mortuary}/Drivers/${theDriver.id}`,
       theDriver
     );
   }

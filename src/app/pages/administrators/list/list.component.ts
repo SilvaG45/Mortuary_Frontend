@@ -29,8 +29,8 @@ export class ListComponent implements OnInit {
     this.router.navigate(["administrators/update/" + id]);
   }
   list() {
-    this.service.list().subscribe((data) => {
-      this.administrators = data;
+    this.service.list().subscribe((response) => {
+      this.administrators = response.data.data;
     });
   }
   delete(id: number) {

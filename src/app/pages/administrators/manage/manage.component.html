@@ -80,8 +80,10 @@
                     >
                   </div>
                 </div>
-              </div> <!-- Aquí cierra el div.row de Responsabilities -->
-              <div class="row"> <!-- Apertura del nuevo div.row de Status -->
+              </div>
+              <!-- Aquí cierra el div.row de Responsabilities -->
+              <div class="row">
+                <!-- Apertura del nuevo div.row de Status -->
                 <div class="col-4">Status:</div>
                 <div class="col-8">
                   <input
@@ -111,7 +113,34 @@
                     >
                   </div>
                 </div>
-              </div> <!-- Aquí cierra el div.row de Status -->
+              </div>
+              <!-- <div class="row">
+                <div class="col-4">headquarter_id:</div>
+                <div class="col-8">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="administrator.headquarter_id"
+                    [disabled]="mode == 1"
+                    formControlName="headquarter_id"
+                  />
+                  <div
+                    *ngIf="
+                      getTheFormGroup.headquarter_id.errors &&
+                      (getTheFormGroup.headquarter_id.dirty ||
+                        getTheFormGroup.headquarter_id.touched ||
+                        trySend)
+                    "
+                  >
+                    <strong
+                      *ngIf="getTheFormGroup.headquarter_id.errors.required"
+                      class="msnError"
+                      >Requerido</strong
+                    >
+                  </div>
+                </div>
+              </div> -->
+              <!-- Aquí cierra el div.row de Status -->
               <!-- <div class="row">
                 <div class="col-4">Headquarter:</div>
                 <div class="col-8">

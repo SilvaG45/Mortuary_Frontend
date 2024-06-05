@@ -66,7 +66,7 @@ export class ManageComponent implements OnInit {
       ],
       phone_number: [
         "",
-        [Validators.required, Validators.min(10), Validators.max(10)],
+        [Validators.required, Validators.minLength(8), Validators.maxLength(10)],
       ],
       capacity: [
         "",
