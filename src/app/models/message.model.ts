@@ -1,7 +1,7 @@
 export class Message {
   id?: number;
   user_id: string;
-  chat_room_id: number;
+  chatroom_id: number;
   message: string;
   // date: Date;
   status: number;
