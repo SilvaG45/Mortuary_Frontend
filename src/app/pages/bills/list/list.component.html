@@ -10,44 +10,45 @@
         </div>
         <div class="card-body">
           <button class="btn btn-primary mb-3" (click)="create()">
-            Crear Nuevo Bill
+            Crear nuevo pago
           </button>
           <table class="table">
             <thead>
               <tr>
-                <th scope="col-1">ID</th>
+                <th scope="col-1">id</th>
+                <th scope="col-2">customer_id</th>
                 <th scope="col-2">membership_id</th>
+                <th scope="col-2">payment_method_id</th>
                 <th scope="col-4">price</th>
-                <th scope="col-4">status</th>
-
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let actual of bills">
-                <td>{{ actual.ID }}</td>
+                <td>{{ actual.id }}</td>
+                <td>{{ actual.customer_id }}</td>
                 <td>{{ actual.membership_id }}</td>
+                <td>{{ actual.payment_method_id }}</td>
                 <td>{{ actual.price }}</td>
-                <td>{{ actual.status }}</td>
 
                 <td>
                   <button
                     type="button"
                     class="btn btn-success"
-                    (click)="view(actual.ID)"
+                    (click)="view(actual.id)"
                   >
                     Ver
                   </button>
                   <button
                     type="button"
                     class="btn btn-danger"
-                    (click)="update(actual.ID)"
+                    (click)="update(actual.id)"
                   >
                     Editar
                   </button>
                   <button
                     type="button"
                     class="btn btn-warning"
-                    (click)="delete(actual.ID)"
+                    (click)="delete(actual.id)"
                   >
                     Eliminar
                   </button>

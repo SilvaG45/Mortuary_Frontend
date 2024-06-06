@@ -94,6 +94,7 @@ export class ManageComponent implements OnInit {
       );
       return;
     }
+    this.relocation = { ...this.relocation, ...this.theFormGroup.value };
     this.service.create(this.relocation).subscribe((data) => {
       Swal.fire(
         "Creación Exitosa",

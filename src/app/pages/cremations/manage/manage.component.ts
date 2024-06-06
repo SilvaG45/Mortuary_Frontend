@@ -36,10 +36,10 @@ export class ManageComponent implements OnInit {
 
   configFormGroup() {
     this.theFormGroup = this.theFormBuilder.group({
-      service_id: ["", [Validators.required]],
+      service_id: [0, [Validators.required]],
       room_id: [0, [Validators.required]],
       cremation_date: ["", [Validators.required]],
-      status: ["", [Validators.required]],
+      status: [0, [Validators.required]],
     });
   }
 
@@ -72,7 +72,6 @@ export class ManageComponent implements OnInit {
   getCremation(id: number) {
     this.service.view(id).subscribe((data) => {
       this.cremation = data;
-      console.log("Cremation " + JSON.stringify(this.cremation));
     });
   }
 
@@ -86,6 +85,7 @@ export class ManageComponent implements OnInit {
       );
       return;
     }
+    this.cremation = { ...this.cremation, ...this.theFormGroup.value };
     this.service.create(this.cremation).subscribe((data) => {
       Swal.fire(
         "Creación Exitosa",

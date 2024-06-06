@@ -32,9 +32,10 @@ export class ManageComponent implements OnInit {
     this.bill = {
       id: 0,
       customer_id: 0,
-      membership_id: "",
+      membership_id: 0,
+      payment_method_id: "",
       price: 0,
-      status: false,
+      // status: false,
     };
     this.configFormGroup();
   }
@@ -42,16 +43,14 @@ export class ManageComponent implements OnInit {
   configFormGroup() {
     this.theFormGroup = this.theFormBuilder.group({
       customer_id: [0, [Validators.required]],
-      membership_id: ["", [Validators.required]],
+      membership_id: [0, [Validators.required]],
+      payment_method_id: ["", [Validators.required]],
+
       price: [
-        "",
-        [
-          Validators.required,
-          Validators.minLength(10000),
-          Validators.maxLength(1000000),
-        ],
+        0,
+        [Validators.required, Validators.min(10000), Validators.max(1000000)],
       ],
-      status: ["", [Validators.required]],
+      // status: [0, [Validators.required]],
     });
   }
 
@@ -84,6 +83,7 @@ export class ManageComponent implements OnInit {
   getBill(id: number) {
     this.service.view(id).subscribe((data) => {
       this.bill = data;
+      this.theFormGroup.patchValue(this.bill); // Enlazar los datos al formulario
       console.log("Pago: " + JSON.stringify(this.bill));
     });
   }
@@ -98,6 +98,7 @@ export class ManageComponent implements OnInit {
       );
       return;
     }
+    this.bill = { ...this.bill, ...this.theFormGroup.value }; // Actualizar el objeto bill con los valores del formulario
     this.service.create(this.bill).subscribe((data) => {
       Swal.fire(
         "Creación Exitosa",
@@ -107,6 +108,7 @@ export class ManageComponent implements OnInit {
       this.router.navigate(["bills/list"]);
     });
   }
+
   update() {
     if (this.theFormGroup.invalid) {
       this.trySend = true;
@@ -117,6 +119,7 @@ export class ManageComponent implements OnInit {
       );
       return;
     }
+    this.bill = { ...this.bill, ...this.theFormGroup.value }; // Actualizar el objeto bill con los valores del formulario
     this.service.update(this.bill).subscribe((data) => {
       Swal.fire(
         "Actualización Exitosa",
