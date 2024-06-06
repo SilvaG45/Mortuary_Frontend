@@ -31,6 +31,7 @@ export class ListComponent implements OnInit {
   list() {
     this.service.list().subscribe((data) => {
       this.rooms = data;
+      console.log(JSON.stringify(data));
     });
   }
   delete(id: number) {

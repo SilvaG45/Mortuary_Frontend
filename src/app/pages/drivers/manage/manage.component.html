@@ -1,7 +1,5 @@
 <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8"></div>
-<!-- Page content -->
 <div class="container-fluid mt--7">
-  <!-- Table -->
   <div class="row">
     <div class="col">
       <div class="card shadow">
@@ -15,9 +13,7 @@
             <div class="container">
               <div class="row">
                 <div class="col-4">Id:</div>
-                <div class="col-8">
-                  {{ driver.id }}
-                </div>
+                <div class="col-8">{{ driver.id }}</div>
               </div>
               <div class="row">
                 <div class="col-4">user_id:</div>
@@ -25,8 +21,6 @@
                   <input
                     type="text"
                     class="form-control"
-                    [(ngModel)]="driver.user_id"
-                    [disabled]="mode == 1"
                     formControlName="user_id"
                   />
                   <div
@@ -51,8 +45,6 @@
                   <input
                     type="text"
                     class="form-control"
-                    [(ngModel)]="driver.name"
-                    [disabled]="mode == 1"
                     formControlName="name"
                   />
                   <div
@@ -69,27 +61,24 @@
                       >Requerido</strong
                     >
                     <strong
-                      *ngIf="getTheFormGroup.name.errors.min"
+                      *ngIf="getTheFormGroup.name.errors.minlength"
                       class="msnError"
                       >Valor mínimo debe ser 5</strong
                     >
                     <strong
-                      *ngIf="getTheFormGroup.name.errors.max"
+                      *ngIf="getTheFormGroup.name.errors.maxlength"
                       class="msnError"
                       >Valor máximo debe ser 20</strong
                     >
                   </div>
                 </div>
               </div>
-              <!-- Aquí cierra el div.row de name -->
               <div class="row">
                 <div class="col-4">vehicle:</div>
                 <div class="col-8">
                   <input
                     type="text"
                     class="form-control"
-                    [(ngModel)]="driver.vehicle"
-                    [disabled]="mode == 1"
                     formControlName="vehicle"
                   />
                   <div
@@ -106,12 +95,12 @@
                       >Requerido</strong
                     >
                     <strong
-                      *ngIf="getTheFormGroup.vehicle.errors.min"
+                      *ngIf="getTheFormGroup.vehicle.errors.minlength"
                       class="msnError"
                       >Valor mínimo debe ser 3</strong
                     >
                     <strong
-                      *ngIf="getTheFormGroup.vehicle.errors.max"
+                      *ngIf="getTheFormGroup.vehicle.errors.maxlength"
                       class="msnError"
                       >Valor máximo debe ser 15</strong
                     >
@@ -124,8 +113,6 @@
                   <input
                     type="text"
                     class="form-control"
-                    [(ngModel)]="driver.model"
-                    [disabled]="mode == 1"
                     formControlName="model"
                   />
                   <div
@@ -142,12 +129,12 @@
                       >Requerido</strong
                     >
                     <strong
-                      *ngIf="getTheFormGroup.model.errors.min"
+                      *ngIf="getTheFormGroup.model.errors.minlength"
                       class="msnError"
                       >Valor mínimo debe ser 3</strong
                     >
                     <strong
-                      *ngIf="getTheFormGroup.model.errors.max"
+                      *ngIf="getTheFormGroup.model.errors.maxlength"
                       class="msnError"
                       >Valor máximo debe ser 10</strong
                     >
@@ -160,8 +147,6 @@
                   <input
                     type="text"
                     class="form-control"
-                    [(ngModel)]="driver.phone_number"
-                    [disabled]="mode == 1"
                     formControlName="phone_number"
                   />
                   <div
@@ -178,12 +163,12 @@
                       >Requerido</strong
                     >
                     <strong
-                      *ngIf="getTheFormGroup.phone_number.errors.min"
+                      *ngIf="getTheFormGroup.phone_number.errors.minlength"
                       class="msnError"
                       >Valor mínimo debe ser 8</strong
                     >
                     <strong
-                      *ngIf="getTheFormGroup.phone_number.errors.max"
+                      *ngIf="getTheFormGroup.phone_number.errors.maxlength"
                       class="msnError"
                       >Valor máximo debe ser 10</strong
                     >
@@ -196,8 +181,6 @@
                   <input
                     type="text"
                     class="form-control"
-                    [(ngModel)]="driver.capacity"
-                    [disabled]="mode == 1"
                     formControlName="capacity"
                   />
                   <div
@@ -227,14 +210,11 @@
                 </div>
               </div>
               <div class="row">
-                <!-- Apertura del nuevo div.row de Status -->
                 <div class="col-4">Status:</div>
                 <div class="col-8">
                   <input
                     type="text"
                     class="form-control"
-                    [(ngModel)]="driver.status"
-                    [disabled]="mode == 1"
                     formControlName="status"
                   />
                   <div
@@ -253,21 +233,6 @@
                   </div>
                 </div>
               </div>
-              <!-- Aquí cierra el div.row de Status -->
-              <!-- <div class="row">
-                <div class="col-4">Headquarter:</div>
-                <div class="col-8">
-                  <select class="form-control" formControlName="idHeadquarter">
-                    <option
-                      *ngFor="let option of headquarters"
-                      [value]="option.id"
-                    >
-                      Nombre: {{ option.name }} - Descripción: {{ option.description }} -
-                      Capacidad: {{ option.capacidad }}
-                    </option>
-                  </select>
-                </div>
-              </div> -->
               <div class="row">
                 <div class="col-4"></div>
                 <div class="col-8">

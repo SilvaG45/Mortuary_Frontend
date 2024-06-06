@@ -16,16 +16,19 @@
             <thead>
               <tr>
                 <th scope="col-1">ID</th>
-                <th scope="col-2">MembershipID</th>
-                <th scope="col-4">PaymentmethodID</th>
-                <th scope="col-5">Opciones</th>
+                <th scope="col-2">membership_id</th>
+                <th scope="col-4">price</th>
+                <th scope="col-4">status</th>
+
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let actual of bills">
                 <td>{{ actual.ID }}</td>
-                <td>{{ actual.MembershipID }}</td>
-                <td>{{ actual.PaymentmethodID }}</td>
+                <td>{{ actual.membership_id }}</td>
+                <td>{{ actual.price }}</td>
+                <td>{{ actual.status }}</td>
+
                 <td>
                   <button
                     type="button"

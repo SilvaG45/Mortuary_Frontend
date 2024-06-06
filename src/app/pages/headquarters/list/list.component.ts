@@ -30,7 +30,10 @@ export class ListComponent implements OnInit {
   }
   list() {
     this.service.list().subscribe((data) => {
-      this.headquarters = data;
+
+      // console.log(JSON.stringify(data));
+       this.headquarters = data;
+      
     });
   }
   delete(id: number) {

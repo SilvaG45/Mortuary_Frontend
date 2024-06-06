@@ -6,56 +6,59 @@
     <div class="col">
       <div class="card shadow">
         <div class="card-header bg-transparent">
-          <h3 class="mb-0">Icons</h3>
+          <h3 class="mb-0">Headquarters</h3>
         </div>
         <div class="card-body">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col-1">ID</th>
-                <th scope="col-2">administrator_id</th>
-                <th scope="col-2">name</th>
-                <th scope="col-4">description</th>
-                <th scope="col-1">capacity</th>
-                <th scope="col-1">city_id</th>
-                <th scope="col-1">status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let actual of headquarters">
-                <td>{{ actual.ID }}</td>
-                <td>{{ actual.name }}</td>
-                <td>{{ actual.description }}</td>
-                <td>{{ actual.capacity }}</td>
-                <td>{{ actual.cityID }}</td>
-                <td>{{ actual.status }}</td>
-
-                <td>
-                  <button
-                    type="button"
-                    class="btn btn-success"
-                    (click)="view(actual.id)"
-                  >
-                    Ver
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-danger"
-                    (click)="update(actual.id)"
-                  >
-                    Editar
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-warning"
-                    (click)="delete(actual.id)"
-                  >
-                    Eliminar
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">id</th>
+                  <th scope="col">administrator_id</th>
+                  <th scope="col">name</th>
+                  <th scope="col">description</th>
+                  <th scope="col">capacity</th>
+                  <th scope="col">city_id</th>
+                  <th scope="col">status</th>
+                  <th scope="col">actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let actual of headquarters">
+                  <td>{{ actual.id }}</td>
+                  <td>{{ actual.administrator_id }}</td>
+                  <td>{{ actual.name }}</td>
+                  <td>{{ actual.description }}</td>
+                  <td>{{ actual.capacity }}</td>
+                  <td>{{ actual.city_id }}</td>
+                  <td>{{ actual.status }}</td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-success btn-sm"
+                      (click)="view(actual.id)"
+                    >
+                      Ver
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-danger btn-sm"
+                      (click)="update(actual.id)"
+                    >
+                      Editar
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-warning btn-sm"
+                      (click)="delete(actual.id)"
+                    >
+                      Eliminar
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

@@ -56,15 +56,15 @@ export class ManageComponent implements OnInit {
         ],
       ],
       capacity: [
-        "",
+        0,
         [
           Validators.required,
-          Validators.minLength(30),
-          Validators.maxLength(100),
+          Validators.min(30),
+          Validators.max(100),
         ],
       ],
       city_id: [0, [Validators.required]],
-      status: ["", [Validators.required]],
+      status: [0, [Validators.required]],
     });
   }
 

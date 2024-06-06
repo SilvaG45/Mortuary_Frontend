@@ -39,9 +39,14 @@ export class ManageComponent implements OnInit {
 
   configFormGroup() {
     this.theFormGroup = this.theFormBuilder.group({
-      user_id: [0, [Validators.required]],
+      user_id: [
+        { value: "", disabled: this.mode === 1 },
+
+        [Validators.required],
+      ],
       name: [
-        "",
+        { value: "", disabled: this.mode === 1 },
+
         [
           Validators.required,
           Validators.minLength(5),
@@ -49,7 +54,7 @@ export class ManageComponent implements OnInit {
         ],
       ],
       vehicle: [
-        "",
+        { value: "", disabled: this.mode === 1 },
         [
           Validators.required,
           Validators.minLength(3),
@@ -57,7 +62,7 @@ export class ManageComponent implements OnInit {
         ],
       ],
       model: [
-        "",
+        { value: "", disabled: this.mode === 1 },
         [
           Validators.required,
           Validators.minLength(3),
@@ -65,29 +70,24 @@ export class ManageComponent implements OnInit {
         ],
       ],
       phone_number: [
-        "",
-        [Validators.required, Validators.minLength(8), Validators.maxLength(10)],
-      ],
-      capacity: [
-        "",
+        { value: "", disabled: this.mode === 1 },
         [
           Validators.required,
-          Validators.minLength(1),
+          Validators.minLength(8),
           Validators.maxLength(10),
         ],
       ],
-      status: ["", [Validators.required]],
+      capacity: [
+        { value: 0, disabled: this.mode === 1 },
+        [Validators.required, Validators.min(1), Validators.max(10)],
+      ],
+      status: [{ value: 0, disabled: this.mode === 1 }, [Validators.required]],
     });
   }
 
   get getTheFormGroup() {
     return this.theFormGroup.controls;
   }
-
-  //getDriverData(){
-  //  this.driver.capacity = this.getTheFormGroup.capacity.value;
-  //  this.driver.location = this.getTheFormGroup.location.value;
-  //}
 
   ngOnInit(): void {
     const currentUrl = this.activateRoute.snapshot.url.join("/");
@@ -101,16 +101,30 @@ export class ManageComponent implements OnInit {
     }
 
     if (this.activateRoute.snapshot.params.id) {
-      this.driver.id = this.activateRoute.snapshot.params.id;
+      this.driver.id = +this.activateRoute.snapshot.params.id;
       this.getDriver(this.driver.id);
+    } else {
+      this.updateFormState();
     }
   }
 
   getDriver(id: number) {
-    this.service.view(id).subscribe((data) => {
-      this.driver = data;
-      console.log("Driver " + JSON.stringify(this.driver));
+    this.service.view(id).subscribe((response) => {
+      this.driver = response.data;
+      this.theFormGroup.patchValue(this.driver);
+      this.updateFormState();
     });
+  }
+
+  updateFormState() {
+    if (this.mode === 1) {
+      this.theFormGroup.disable();
+    } else {
+      this.theFormGroup.enable();
+      if (this.mode === 3) {
+        this.theFormGroup.get("user_id").disable();
+      }
+    }
   }
 
   create() {
@@ -123,6 +137,8 @@ export class ManageComponent implements OnInit {
       );
       return;
     }
+    this.driver = { ...this.driver, ...this.theFormGroup.value };
+
     this.service.create(this.driver).subscribe((data) => {
       Swal.fire(
         "Creación Exitosa",
@@ -132,6 +148,7 @@ export class ManageComponent implements OnInit {
       this.router.navigate(["drivers/list"]);
     });
   }
+
   update() {
     if (this.theFormGroup.invalid) {
       this.trySend = true;
@@ -142,6 +159,8 @@ export class ManageComponent implements OnInit {
       );
       return;
     }
+    this.driver = { ...this.driver, ...this.theFormGroup.value };
+
     this.service.update(this.driver).subscribe((data) => {
       Swal.fire(
         "Actualización Exitosa",

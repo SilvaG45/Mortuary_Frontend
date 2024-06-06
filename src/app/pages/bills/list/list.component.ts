@@ -32,8 +32,7 @@ export class ListComponent implements OnInit {
 
   list() {
     this.service.list().subscribe((data) => {
-      this.bills = data; // Asigna los datos obtenidos del servicio a la propiedad bills
-      console.log(JSON.stringify(this.bills));
+      this.bills = data; 
     });
   }
 

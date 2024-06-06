@@ -20,13 +20,13 @@ export class ListComponent implements OnInit {
     this.list();
   }
   view(id: number) {
-    this.router.navigate(["burial/view/" + id]);
+    this.router.navigate(["burials/view/" + id]);
   }
   create() {
-    this.router.navigate(["burial/create"]);
+    this.router.navigate(["burials/create"]);
   }
   update(id: number) {
-    this.router.navigate(["burial/update/" + id]);
+    this.router.navigate(["burials/update/" + id]);
   }
   list() {
     this.service.list().subscribe((data) => {

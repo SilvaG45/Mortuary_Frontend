@@ -12,29 +12,29 @@ export class PlanByServiceService {
 
   list(): Observable<PlanByService[]> {
     return this.http.get<PlanByService[]>(
-      `${environment.url_ms_mortuary}/PlanByServices`
+      `${environment.url_ms_mortuary}/PlanByService`
     );
   }
   view(id: number): Observable<PlanByService> {
     return this.http.get<PlanByService>(
-      `${environment.url_ms_mortuary}/PlanByServices/${id}`
+      `${environment.url_ms_mortuary}/PlanByService/${id}`
     );
   }
   create(thePlanByService: PlanByService): Observable<PlanByService> {
     return this.http.post<PlanByService>(
-      `${environment.url_ms_mortuary}/PlanByServices/`,
+      `${environment.url_ms_mortuary}/PlanByService/`,
       thePlanByService
     );
   }
   update(thePlanByService: PlanByService): Observable<PlanByService> {
     return this.http.put<PlanByService>(
-      `${environment.url_ms_mortuary}/PlanByServices/${thePlanByService.id}`,
+      `${environment.url_ms_mortuary}/PlanByService/${thePlanByService.id}`,
       thePlanByService
     );
   }
   delete(id: number) {
     return this.http.delete<PlanByService>(
-      `${environment.url_ms_mortuary}/PlanByServices/${id}`
+      `${environment.url_ms_mortuary}/PlanByService/${id}`
     );
   }
 }

@@ -54,16 +54,17 @@ export class ManageComponent implements OnInit {
         ],
       ],
       capacity: [
-        "",
+        0,
         [
           Validators.required,
-          Validators.minLength(10),
-          Validators.maxLength(30),
+          Validators.min(10),
+          Validators.max(30),
         ],
       ],
       headquarter_id: [0, [Validators.required]],
-      status: ["", [Validators.required]],
+      status: [0, [Validators.required]],
     });
+    
   }
 
   get getTheFormGroup() {
@@ -90,6 +91,7 @@ export class ManageComponent implements OnInit {
       this.room.id = this.activateRoute.snapshot.params.id;
       this.getRoom(this.room.id);
     }
+    this.configFormGroup()
   }
 
   getRoom(id: number) {
@@ -100,6 +102,7 @@ export class ManageComponent implements OnInit {
   }
 
   create() {
+    console.log(this.theFormGroup)
     if (this.theFormGroup.invalid) {
       this.trySend = true;
       Swal.fire(

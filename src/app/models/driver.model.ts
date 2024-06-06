@@ -8,3 +8,15 @@ export class Driver {
   capacity: number;
   status: number;
 }
+
+export interface ResponseDriver {
+  data: {
+    data: Driver[];
+  };
+  message: string;
+}
+
+export interface ResponseOneDriver {
+  message: string;
+  data: Driver;
+}

@@ -28,8 +28,8 @@ export class ListComponent implements OnInit {
     this.router.navigate(["drivers/update/" + id]);
   }
   list() {
-    this.service.list().subscribe((data) => {
-      this.driver = data;
+    this.service.list().subscribe((response) => {
+      this.driver = response.data.data;
     });
   }
   delete(id: number) {

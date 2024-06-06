@@ -38,7 +38,7 @@ export class ManageComponent implements OnInit {
   configFormGroup() {
     this.theFormGroup = this.theFormBuilder.group({
       service_id: [0, [Validators.required]],
-      room_id: ["", [Validators.required]],
+      room_id: [0, [Validators.required]],
       description: [
         "",
         [
@@ -102,6 +102,7 @@ export class ManageComponent implements OnInit {
       );
       return;
     }
+    this.burial = { ...this.burial, ...this.theFormGroup.value };
     this.service.create(this.burial).subscribe((data) => {
       Swal.fire(
         "Creación Exitosa",
@@ -121,6 +122,7 @@ export class ManageComponent implements OnInit {
       );
       return;
     }
+  
     this.service.update(this.burial).subscribe((data) => {
       Swal.fire(
         "Actualización Exitosa",

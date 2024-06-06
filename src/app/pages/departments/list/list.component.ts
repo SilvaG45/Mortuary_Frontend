@@ -46,8 +46,8 @@ export class ListComponent implements OnInit {
       if (result.isConfirmed) {
         this.service.delete(id).subscribe((data) => {
           Swal.fire(
-            "Eliminada!",
-            "El departamento ha sido eliminado correctamente",
+            "Eliminado!",
+            "El departamento ha sido eliminada correctamente",
             "success"
           );
           this.ngOnInit();

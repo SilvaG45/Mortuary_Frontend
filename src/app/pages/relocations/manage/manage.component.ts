@@ -35,16 +35,19 @@ export class ManageComponent implements OnInit {
 
   configFormGroup() {
     this.theFormGroup = this.theFormBuilder.group({
-      name: ["", [Validators.required]],
+      service_id: [
+        { value: 0, disabled: this.mode === 1 },
+        [Validators.required],
+      ],
       location: [
-        0,
+        { value: "", disabled: this.mode === 1 },
         [
           Validators.required,
           Validators.minLength(5),
           Validators.maxLength(15),
         ],
       ],
-      status: ["", [Validators.required]],
+      status: [{ value: 0, disabled: this.mode === 1 }, [Validators.required]],
     });
   }
 
