@@ -1,14 +1,24 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-import { DriversRoutingModule } from './drivers-routing.module';
+import { DriversRoutingModule } from "./drivers-routing.module";
+import { ManageComponent } from "./manage/manage.component"; // Importa tu componente aquí
+import { ListComponent } from "./list/list.component";
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ManageComponent,
+   ListComponent
+  ],
+
   imports: [
     CommonModule,
-    DriversRoutingModule
-  ]
+    DriversRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+  ],
 })
-export class DriversModule { }
+
+export class DriversModule {}

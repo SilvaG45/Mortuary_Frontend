@@ -1,35 +1,38 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { environment } from "src/environments/environment";
 import { Observable } from "rxjs";
-import { Administrator } from "../models/administrator.model";
+import {
+  Administrator,
+  ResponseAdministrator,
+  ResponseOneAdministrator,
+} from "../models/administrator.model";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root",
 })
 export class AdministratorService {
   constructor(private http: HttpClient) {}
-
-  list(): Observable<Administrator[]> {
-    return this.http.get<Administrator[]>(
+  list(): Observable<ResponseAdministrator> {
+    return this.http.get<ResponseAdministrator>(
       `${environment.url_ms_mortuary}/Administrators`
     );
   }
-  view(id: number): Observable<Administrator> {
-    return this.http.get<Administrator>(
+  view(id: number): Observable<ResponseOneAdministrator> {
+    return this.http.get<ResponseOneAdministrator>(
       `${environment.url_ms_mortuary}/Administrators/${id}`
     );
   }
-  create(theAdministrator: Administrator): Observable<Administrator> {
+  create(administrator: Administrator): Observable<Administrator> {
     return this.http.post<Administrator>(
       `${environment.url_ms_mortuary}/Administrators/`,
-      theAdministrator
+      administrator
     );
   }
-  update(theAdministrator: Administrator): Observable<Administrator> {
+  update(administrator: Administrator): Observable<Administrator> {
     return this.http.put<Administrator>(
-      `${environment.url_ms_mortuary}/Administrators/${theAdministrator.id}`,
-      theAdministrator
+      `${environment.url_ms_mortuary}/Administrators/${administrator.id}`,
+      administrator
     );
   }
   delete(id: number) {

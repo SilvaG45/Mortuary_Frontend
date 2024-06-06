@@ -1,1 +1,68 @@
-<p>list works!</p>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8"></div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0">Icons</h3>
+        </div>
+        <div class="card-body">
+          <button class="btn btn-primary mb-3" (click)="create()">
+            Crear nuevo conductor
+          </button>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col-1">id</th>
+                <th scope="col-2">user_id</th>
+                <th scope="col-4">name</th>
+                <th scope="col-3">vehicle</th>
+                <th scope="col-3">model</th>
+                <th scope="col-3">phone_number</th>
+                <th scope="col-2">capacity</th>
+                <th scope="col-1">status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let actual of driver">
+                <td>{{ actual.id }}</td>
+                <td>{{ actual.user_id }}</td>
+                <td>{{ actual.name }}</td>
+                <td>{{ actual.vehicle }}</td>
+                <td>{{ actual.model }}</td>
+                <td>{{ actual.phone_number }}</td>
+                <td>{{ actual.capacity }}</td>
+                <td>{{ actual.status }}</td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    (click)="view(actual.id)"
+                  >
+                    Ver
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="update(actual.id)"
+                  >
+                    Editar
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-warning"
+                    (click)="delete(actual.id)"
+                  >
+                    Eliminar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

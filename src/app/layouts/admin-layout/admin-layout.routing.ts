@@ -56,12 +56,34 @@ export const AdminLayoutRoutes: Routes = [
       ),
   },
   {
+    path: "burials",
+    loadChildren: () =>
+      import("src/app/pages/burials/burials.module").then(
+        (m) => m.BurialsModule
+      ),
+  },
+  {
+    path: "cremations",
+    loadChildren: () =>
+      import("src/app/pages/cremations/cremations.module").then(
+        (m) => m.CremationsModule
+      ),
+  },
+  {
+    path: "relocations",
+    loadChildren: () =>
+      import("src/app/pages/relocations/relocations.module").then(
+        (m) => m.RelocationsModule
+      ),
+  },
+  {
     path: "drivers",
     loadChildren: () =>
       import("src/app/pages/drivers/drivers.module").then(
         (m) => m.DriversModule
       ),
   },
+
   {
     path: "holders",
     loadChildren: () =>

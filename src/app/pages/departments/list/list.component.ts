@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { log } from "console";
 import { Department } from "src/app/models/department.model";
 import { DepartmentService } from "src/app/services/department.service";
 import Swal from "sweetalert2";
@@ -18,11 +19,18 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.list();
   }
-
+  view(id: number) {
+    this.router.navigate(["departments/view/" + id]);
+  }
+  create() {
+    this.router.navigate(["departments/create"]);
+  }
+  update(id: number) {
+    this.router.navigate(["departments/update/" + id]);
+  }
   list() {
     this.service.list().subscribe((data) => {
       this.departments = data;
-      console.log(JSON.stringify(this.departments));
     });
   }
   delete(id: number) {

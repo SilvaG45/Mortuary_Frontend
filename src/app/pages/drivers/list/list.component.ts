@@ -10,9 +10,9 @@ import Swal from "sweetalert2";
   styleUrls: ["./list.component.scss"],
 })
 export class ListComponent implements OnInit {
-  drivers: Driver[];
+  driver: Driver[];
   constructor(private service: DriverService, private router: Router) {
-    this.drivers = [];
+    this.driver = [];
   }
 
   ngOnInit(): void {
@@ -28,14 +28,14 @@ export class ListComponent implements OnInit {
     this.router.navigate(["drivers/update/" + id]);
   }
   list() {
-    this.service.list().subscribe((data) => {
-      this.drivers = data;
+    this.service.list().subscribe((response) => {
+      this.driver = response.data.data;
     });
   }
   delete(id: number) {
     Swal.fire({
-      title: "Eliminar Estudiante",
-      text: "Está seguro que quiere eliminar el estudiante?",
+      title: "Eliminar conductor",
+      text: "Está seguro que quiere eliminar el conductor?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -46,7 +46,7 @@ export class ListComponent implements OnInit {
         this.service.delete(id).subscribe((data) => {
           Swal.fire(
             "Eliminado!",
-            "El estudiante ha sido eliminada correctamente",
+            "El conductor ha sido eliminada correctamente",
             "success"
           );
           this.ngOnInit();

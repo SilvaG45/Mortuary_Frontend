@@ -9,14 +9,17 @@
           <h3 class="mb-0">Icons</h3>
         </div>
         <div class="card-body">
+          <button class="btn btn-primary mb-3" (click)="create()">
+            Crear nuevo Administrador
+          </button>
           <table class="table">
             <thead>
               <tr>
-                <th scope="col-1">ID</th>
-                <th scope="col-2">UserID</th>
-                <th scope="col-4">Responsabilites</th>
-                <th scope="col-5">Status</th>
-                <th scope="col-5">Headquearters</th>
+                <th scope="col-1">id</th>
+                <th scope="col-2">user_id</th>
+                <th scope="col-4">responsibilities</th>
+                <th scope="col-5">status</th>
+                <!-- <th scope="col-5">Headquearters</th> -->
               </tr>
             </thead>
             <tbody>
@@ -25,7 +28,7 @@
                 <td>{{ actual.user_id }}</td>
                 <td>{{ actual.responsibilities }}</td>
                 <td>{{ actual.status }}</td>
-                <td>{{ actual.headquearters }}</td>
+                <!-- <td>{{ actual.headquearters }}</td> -->
                 <td>
                   <button
                     type="button"

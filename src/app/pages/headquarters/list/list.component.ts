@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { log } from "console";
 import { Headquarter } from "src/app/models/headquarter.model";
 import { HeadquarterService } from "src/app/services/headquarter.service";
 import Swal from "sweetalert2";
@@ -18,11 +19,21 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.list();
   }
-
+  view(id: number) {
+    this.router.navigate(["headquarters/view/" + id]);
+  }
+  create() {
+    this.router.navigate(["headquarters/create"]);
+  }
+  update(id: number) {
+    this.router.navigate(["headquarters/update/" + id]);
+  }
   list() {
     this.service.list().subscribe((data) => {
-      this.headquarters = data;
-      console.log(JSON.stringify(this.headquarters));
+
+      // console.log(JSON.stringify(data));
+       this.headquarters = data;
+      
     });
   }
   delete(id: number) {
@@ -38,7 +49,7 @@ export class ListComponent implements OnInit {
       if (result.isConfirmed) {
         this.service.delete(id).subscribe((data) => {
           Swal.fire(
-            "Eliminado!",
+            "Eliminada!",
             "La sede ha sido eliminada correctamente",
             "success"
           );

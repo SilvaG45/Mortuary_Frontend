@@ -1,9 +1,19 @@
-import { Headquarter } from "./headquarter.model";
-
 export class Administrator {
   id: number;
   user_id: string;
-  responsibilities: string;
+  responsabilities: string;
   status: number;
-  headquearters?: Headquarter[]
+  // headquarter_id: number;
+}
+
+export interface ResponseAdministrator {
+  data: {
+    data: Administrator[];
+  };
+  message: string;
+}
+
+export interface ResponseOneAdministrator {
+  message: string;
+  data: Administrator;
 }

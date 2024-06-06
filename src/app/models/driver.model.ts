@@ -7,5 +7,16 @@ export class Driver {
   phone_number: string;
   capacity: number;
   status: number;
-  driver_id?: number;
+}
+
+export interface ResponseDriver {
+  data: {
+    data: Driver[];
+  };
+  message: string;
+}
+
+export interface ResponseOneDriver {
+  message: string;
+  data: Driver;
 }

@@ -1,0 +1,60 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8"></div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0">Icons</h3>
+        </div>
+        <div class="card-body">
+          <button class="btn btn-primary mb-3" (click)="create()">
+            Crear un reubicación
+          </button>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col-1">id</th>
+                <th scope="col-2">service_id</th>
+                <th scope="col-4">location</th>
+                <th scope="col-3">status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let actual of relocation">
+                <td>{{ actual.id }}</td>
+                <td>{{ actual.service_id }}</td>
+                <td>{{ actual.location }}</td>
+                <td>{{ actual.status }}</td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    (click)="view(actual.id)"
+                  >
+                    Ver
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="update(actual.id)"
+                  >
+                    Editar
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-warning"
+                    (click)="delete(actual.id)"
+                  >
+                    Eliminar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

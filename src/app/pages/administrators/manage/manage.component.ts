@@ -1,7 +1,14 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+// import { Headquarter } from "src/app/models/headquarter.model";
 import { Administrator } from "src/app/models/administrator.model";
+// import { HeadquarterService } from "src/app/services/headquarter.service";
 import { AdministratorService } from "src/app/services/administrator.service";
 import Swal from "sweetalert2";
 
@@ -11,33 +18,56 @@ import Swal from "sweetalert2";
   styleUrls: ["./manage.component.scss"],
 })
 export class ManageComponent implements OnInit {
-  mode: number; // 1->view, 2->Create, 3->Update
+  mode: number;
   administrator: Administrator;
   theFormGroup: FormGroup;
   trySend: boolean;
-
+  // headquarter: Headquarter[];
   constructor(
     private activateRoute: ActivatedRoute,
-    private service: AdministratorService,
-    private router: Router,
     private theFormBuilder: FormBuilder,
+    private service: AdministratorService,
+    private router: Router // private headquarterService: HeadquarterService
   ) {
     this.trySend = false;
     this.mode = 1;
-    // this.administrator = {
-    //   id: 0,
-    //   // projector: {
-    //   //   id: 0, // vamos a jugar con el projector, mediante el id
-    //   // },
-    // };
+    // this.headquarter = [];
+    this.administrator = {
+      id: 0,
+      user_id: "",
+      responsabilities: "",
+      status: 1,
+      // headquarter_id: 0,
+    };
+    // this.headquarterList();
     this.configFormGroup();
   }
 
+  // headquarterList() {
+  //   this.headquarterService.list().subscribe((data) => {
+  //     this.headquarter = data;
+  //   });
+  // }
+
   configFormGroup() {
     this.theFormGroup = this.theFormBuilder.group({
-      capacity: [0, [Validators.min(1), Validators.max(100)]],
-      location: ["", [Validators.required, Validators.minLength(2)]],
-      idProjector: [null, [Validators.required]],
+      user_id: [
+        { value: "", disabled: this.mode === 1 },
+        [Validators.required],
+      ],
+      responsabilities: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(1),
+          Validators.maxLength(120),
+        ],
+      ],
+      status: [
+        { value: 0, disabled: this.mode === 1 },
+        [Validators.required, Validators.minLength(2)],
+      ],
+      // headquarter_id: [0, [Validators.required]],
     });
   }
 
@@ -45,10 +75,11 @@ export class ManageComponent implements OnInit {
     return this.theFormGroup.controls;
   }
 
-  //   getAdministratorData(){
-  //     this.administrator.capacity = this.getTheFormGroup.capacity.value;
-  //     this.administrator.location = this.getTheFormGroup.location.value;
-  //   }
+  //getAdministratorData(){
+  //  this.administrator.capacity = this.getTheFormGroup.capacity.value;
+  //  this.administrator.location = this.getTheFormGroup.location.value;
+  //}
+
   ngOnInit(): void {
     const currentUrl = this.activateRoute.snapshot.url.join("/");
 
@@ -59,17 +90,44 @@ export class ManageComponent implements OnInit {
     } else if (currentUrl.includes("update")) {
       this.mode = 3;
     }
+
     if (this.activateRoute.snapshot.params.id) {
       this.administrator.id = this.activateRoute.snapshot.params.id;
       this.getAdministrator(this.administrator.id);
+    } else {
+      this.updateFormState();
     }
   }
+
   getAdministrator(id: number) {
-    this.service.view(id).subscribe((data) => {
-      this.administrator = data;
+    this.service.view(id).subscribe((response) => {
+      this.administrator = response.data;
+      this.theFormGroup.patchValue(this.administrator)
+      this.updateFormState
     });
   }
+
+  updateFormState() {
+    if (this.mode === 1) {
+      this.theFormGroup.disable();
+    } else {
+      this.theFormGroup.enable();
+      if (this.mode === 3) {
+        this.theFormGroup.get("user_id").disable();
+      }
+    }
+  }
+
   create() {
+    if (this.theFormGroup.invalid) {
+      this.trySend = true;
+      Swal.fire(
+        "Formulario Incompleto",
+        "Ingrese correctamente los datos solicitados",
+        "error"
+      );
+      return;
+    }
     this.service.create(this.administrator).subscribe((data) => {
       Swal.fire(
         "Creación Exitosa",
@@ -80,13 +138,22 @@ export class ManageComponent implements OnInit {
     });
   }
   update() {
+    if (this.theFormGroup.invalid) {
+      this.trySend = true;
+      Swal.fire(
+        "Formulario Incompleto",
+        "Ingrese correctamente los datos solicitados",
+        "error"
+      );
+      return;
+    }
     this.service.update(this.administrator).subscribe((data) => {
       Swal.fire(
         "Actualización Exitosa",
-        "Se ha actualizado un nuevo registro",
+        "Se ha actualizado el registro",
         "success"
       );
-      this.router.navigate(["theaters/list"]);
+      this.router.navigate(["administrators/list"]);
     });
   }
 }
