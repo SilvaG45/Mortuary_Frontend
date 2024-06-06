@@ -11,28 +11,30 @@ export class AdministratorService {
   constructor(private http: HttpClient) {}
 
   list(): Observable<Administrator[]> {
-    return this.http.get<Administrator[]>(`${environment.url_ms_mortuary}/administrators`);
+    return this.http.get<Administrator[]>(
+      `${environment.url_ms_mortuary}/Administrators`
+    );
   }
   view(id: number): Observable<Administrator> {
     return this.http.get<Administrator>(
-      `${environment.url_ms_mortuary}/admnistrators/${id}`
+      `${environment.url_ms_mortuary}/Administrators/${id}`
     );
   }
   create(theAdministrator: Administrator): Observable<Administrator> {
     return this.http.post<Administrator>(
-      `${environment.url_ms_mortuary}/admnistrators/`,
+      `${environment.url_ms_mortuary}/Administrators/`,
       theAdministrator
     );
   }
   update(theAdministrator: Administrator): Observable<Administrator> {
     return this.http.put<Administrator>(
-      `${environment.url_ms_mortuary}/admnistrators/${theAdministrator.id}`,
+      `${environment.url_ms_mortuary}/Administrators/${theAdministrator.id}`,
       theAdministrator
     );
   }
   delete(id: number) {
     return this.http.delete<Administrator>(
-      `${environment.url_ms_mortuary}/admnistrators/${id}`
+      `${environment.url_ms_mortuary}/Administrators/${id}`
     );
   }
 }
