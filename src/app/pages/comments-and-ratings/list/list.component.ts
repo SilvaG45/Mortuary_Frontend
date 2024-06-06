@@ -27,6 +27,12 @@ export class ListComponent implements OnInit {
   create() {
     this.router.navigate(["comments-and-ratings/create"]);
   }
+  serviceExecutions() {
+    this.router.navigate(["service-executions/list"]);
+  }
+  customers() {
+    this.router.navigate(["customers/list"]);
+  }
   update(id: number) {
     this.router.navigate(["comments-and-ratings/update/" + id]);
   }

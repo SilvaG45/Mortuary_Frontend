@@ -24,6 +24,9 @@ export class ListComponent implements OnInit {
   create() {
     this.router.navigate(["holders/create"]);
   }
+  customers() {
+    this.router.navigate(["customers/list"]);
+  }
   update(id: number) {
     this.router.navigate(["holders/update/" + id]);
   }
