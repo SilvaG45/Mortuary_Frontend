@@ -27,7 +27,7 @@ export class ManageComponent implements OnInit {
     this.message = {
       id: 0,
       user_id: "",
-      chat_room_id: 0,
+      chatroom_id: 0,
       message: "",
       // date: new Date(),
       status: 0,
@@ -44,7 +44,7 @@ export class ManageComponent implements OnInit {
         },
         [Validators.required],
       ],
-      chat_room_id: [
+      chatroom_id: [
         {
           value: 0,
           disabled: this.mode == 1 || this.mode == 3,
@@ -114,7 +114,7 @@ export class ManageComponent implements OnInit {
         this.router.navigate(["messages/list"]);
       },
       (error) => {
-        console.error('Error al crear el mensaje:', error);
+        console.error("Error al crear el mensaje:", error);
         Swal.fire(
           "Error en la creación",
           "Ha ocurrido un error al intentar crear el mensaje",
@@ -123,7 +123,7 @@ export class ManageComponent implements OnInit {
       }
     );
   }
-  
+
   update() {
     if (this.theFormGroup.invalid) {
       this.trysend = true;
@@ -135,7 +135,7 @@ export class ManageComponent implements OnInit {
       return;
     }
     this.message = { ...this.message, ...this.theFormGroup.value };
-  
+
     this.service.update(this.message).subscribe(
       (data) => {
         Swal.fire(
@@ -146,7 +146,7 @@ export class ManageComponent implements OnInit {
         this.router.navigate(["messages/list"]);
       },
       (error) => {
-        console.error('Error al actualizar el mensaje:', error);
+        console.error("Error al actualizar el mensaje:", error);
         Swal.fire(
           "Error en la actualización",
           "Ha ocurrido un error al intentar actualizar el mensaje",
@@ -155,5 +155,4 @@ export class ManageComponent implements OnInit {
       }
     );
   }
-  
 }

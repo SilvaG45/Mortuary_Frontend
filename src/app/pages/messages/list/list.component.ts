@@ -24,6 +24,9 @@ export class ListComponent implements OnInit {
   create() {
     this.router.navigate(["messages/create"]);
   }
+  chatRooms() {
+    this.router.navigate(["chat-rooms/list"]);
+  }
   update(id: number) {
     this.router.navigate(["messages/update/" + id]);
   }
