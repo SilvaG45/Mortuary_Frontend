@@ -5,30 +5,39 @@ import { IconsComponent } from "../../pages/icons/icons.component";
 import { MapsComponent } from "../../pages/maps/maps.component";
 import { UserProfileComponent } from "../../pages/user-profile/user-profile.component";
 import { TablesComponent } from "../../pages/tables/tables.component";
+import { AuthGuard } from "src/app/guards/auth.guard";
 
 export const AdminLayoutRoutes: Routes = [
   { path: "dashboard", component: DashboardComponent },
-  { path: "user-profile", component: UserProfileComponent },
+  {
+    path: "user-profile",
+    canActivate: [AuthGuard],
+    component: UserProfileComponent,
+  },
   { path: "tables", component: TablesComponent },
   { path: "icons", component: IconsComponent },
   { path: "maps", component: MapsComponent },
   {
     path: "rooms",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("src/app/pages/rooms/rooms.module").then((m) => m.RoomsModule),
   },
   {
     path: "bills",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("src/app/pages/bills/bills.module").then((m) => m.BillsModule),
   },
   {
     path: "cities",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("src/app/pages/cities/cities.module").then((m) => m.CitiesModule),
   },
   {
     path: "departments",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("src/app/pages/departments/departments.module").then(
         (m) => m.DepartmentsModule
@@ -36,6 +45,7 @@ export const AdminLayoutRoutes: Routes = [
   },
   {
     path: "headquarters",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("src/app/pages/headquarters/headquarters.module").then(
         (m) => m.HeadquartersModule
@@ -43,6 +53,7 @@ export const AdminLayoutRoutes: Routes = [
   },
   {
     path: "planesbyservice",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("src/app/pages/planesbyservice/planesbyservice.module").then(
         (m) => m.PlanesbyserviceModule
@@ -50,6 +61,7 @@ export const AdminLayoutRoutes: Routes = [
   },
   {
     path: "administrators",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("src/app/pages/administrators/administrators.module").then(
         (m) => m.AdministratorsModule
@@ -57,6 +69,7 @@ export const AdminLayoutRoutes: Routes = [
   },
   {
     path: "burials",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("src/app/pages/burials/burials.module").then(
         (m) => m.BurialsModule
@@ -64,6 +77,7 @@ export const AdminLayoutRoutes: Routes = [
   },
   {
     path: "cremations",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("src/app/pages/cremations/cremations.module").then(
         (m) => m.CremationsModule
@@ -71,6 +85,7 @@ export const AdminLayoutRoutes: Routes = [
   },
   {
     path: "relocations",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("src/app/pages/relocations/relocations.module").then(
         (m) => m.RelocationsModule
@@ -78,6 +93,7 @@ export const AdminLayoutRoutes: Routes = [
   },
   {
     path: "drivers",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("src/app/pages/drivers/drivers.module").then(
         (m) => m.DriversModule
@@ -86,6 +102,7 @@ export const AdminLayoutRoutes: Routes = [
 
   {
     path: "holders",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("src/app/pages/holders/holders.module").then(
         (m) => m.HoldersModule
@@ -93,6 +110,7 @@ export const AdminLayoutRoutes: Routes = [
   },
   {
     path: "beneficiaries",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("src/app/pages/beneficiaries/beneficiaries.module").then(
         (m) => m.BeneficiariesModule
@@ -100,6 +118,7 @@ export const AdminLayoutRoutes: Routes = [
   },
   {
     path: "customers",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("src/app/pages/customers/customers.module").then(
         (m) => m.CustomersModule
@@ -107,6 +126,7 @@ export const AdminLayoutRoutes: Routes = [
   },
   {
     path: "memberships",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("src/app/pages/memberships/memberships.module").then(
         (m) => m.MembershipsModule
@@ -114,11 +134,13 @@ export const AdminLayoutRoutes: Routes = [
   },
   {
     path: "plans",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("src/app/pages/plans/plans.module").then((m) => m.PlansModule),
   },
   {
     path: "service-executions",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("src/app/pages/service-executions/service-executions.module").then(
         (m) => m.ServiceExecutionsModule
@@ -126,6 +148,7 @@ export const AdminLayoutRoutes: Routes = [
   },
   {
     path: "services",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("src/app/pages/services/services.module").then(
         (m) => m.ServicesModule
@@ -133,6 +156,7 @@ export const AdminLayoutRoutes: Routes = [
   },
   {
     path: "messages",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("src/app/pages/messages/messages.module").then(
         (m) => m.MessagesModule
@@ -140,6 +164,7 @@ export const AdminLayoutRoutes: Routes = [
   },
   {
     path: "chat-rooms",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("src/app/pages/chat-rooms/chat-rooms.module").then(
         (m) => m.ChatRoomsModule
@@ -147,6 +172,7 @@ export const AdminLayoutRoutes: Routes = [
   },
   {
     path: "comments-and-ratings",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import(
         "src/app/pages/comments-and-ratings/comments-and-ratings.module"
