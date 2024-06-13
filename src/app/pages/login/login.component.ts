@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   theUser: User;
   isTwoFactorEnabled: boolean = false;
   twoFactorCode: number;
+  userId: string | undefined;
 
   constructor(
     private theSecurityservice: SecurityService,
@@ -32,45 +33,19 @@ export class LoginComponent implements OnInit, OnDestroy {
   login() {
     this.theSecurityservice.login(this.theUser).subscribe({
       next: (data: AuthResponse) => {
-        console.log(
-          "La respuesta del microservicio de seguridad es " +
-            JSON.stringify(data)
-        );
+        console.log('La respuesta del microservicio de seguridad es ' + JSON.stringify(data));
         if (data.twoFactorRequired) {
-          this.isTwoFactorEnabled = true;
+          this.router.navigate(['/two-factor-auth']); // Redirigir al componente de segundo factor
         } else {
           this.theSecurityservice.saveSession(data);
-          this.router.navigate(["dashboard"]);
+          this.router.navigate(['/dashboard']); // Redirigir al dashboard si no se necesita segundo factor
         }
       },
       error: (error) => {
         if (error.status === 401) {
-          Swal.fire(
-            "Error de autenticación",
-            "Usuario o Contraseña incorrectas",
-            "error"
-          );
+          alert('Usuario o Contraseña incorrectas');
         }
-      },
+      }
     });
-  }
-
-  verifyTwoFactorCode() {
-    const userId = this.theSecurityservice.activeUserSession._id;
-    this.theSecurityservice
-      .verifyTwoFactorCode(userId, this.twoFactorCode)
-      .subscribe({
-        next: (data: AuthResponse) => {
-          this.theSecurityservice.saveSession(data);
-          this.router.navigate(["dashboard"]);
-        },
-        error: (error) => {
-          Swal.fire(
-            "Error de autenticación",
-            "Código de verificación incorrecto",
-            "error"
-          );
-        },
-      });
   }
 }
