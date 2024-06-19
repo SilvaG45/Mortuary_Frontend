@@ -35,6 +35,13 @@ export class SecurityService {
     );
   }
 
+  register(user: User): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(
+      `${environment.url_ms_security}/api/users`,
+      user
+    );
+  }
+
   verifyTwoFactorCode(userId: string, code: number): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(
       `${environment.url_ms_security}/api/public/security/2FA-login/${userId}`,
