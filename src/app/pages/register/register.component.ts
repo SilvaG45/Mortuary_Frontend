@@ -30,13 +30,17 @@ export class RegisterComponent implements OnInit {
     this.theSecurityservice.register(this.newUser).subscribe({
       next: (data: AuthResponse) => {
         Swal.fire("Success", "Cuenta creada correctamente", "success");
-        this.router.navigate(['/login']);
+        this.router.navigate(["/login"]);
       },
       error: (error) => {
         if (error.status === 400) {
-          Swal.fire("Error", "Email ya está en uso, o información no válida", "error");
+          Swal.fire(
+            "Error",
+            "Email ya está en uso, o información no válida",
+            "error"
+          );
         }
-      }
+      },
     });
   }
 }
