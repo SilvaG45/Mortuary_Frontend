@@ -7,6 +7,11 @@ import { TwoFactorAuthComponent } from 'src/app/pages/two-factor-auth/two-factor
 export const AuthLayoutRoutes: Routes = [
     { path: 'login',          component: LoginComponent },
     { path: 'register',       component: RegisterComponent },
-    { path: 'two-factor-auth', component: TwoFactorAuthComponent },
+    { path: 'two-factor-auth/:id', component: TwoFactorAuthComponent },
+
+
+
+
+
 
 ];

@@ -5,6 +5,7 @@ import { User } from "../models/user.model";
 import { BehaviorSubject, Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { AuthResponse } from "../models/auth-response.model";
+import { Session } from "../models/session.model";
 
 @Injectable({
   providedIn: "root",
@@ -34,6 +35,12 @@ export class SecurityService {
       user
     );
   }
+  authentication2fa(userId: string, session: Session): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(
+      `${environment.url_ms_security}/api/public/security/2FA-login/${userId}`,
+      session
+    );
+  }
 
   register(user: User): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(
@@ -58,12 +65,11 @@ export class SecurityService {
       token: dataSesion.token,
     };
     localStorage.setItem("sesion", JSON.stringify(user));
-    this.setUser(user);
   }
 
   logout() {
     localStorage.removeItem("sesion");
-    this.setUser(new User());
+    this.router.navigate(['/login']);
   }
 
   verifyActualSession() {

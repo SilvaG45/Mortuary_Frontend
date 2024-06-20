@@ -1,44 +1,45 @@
-import { Component } from "@angular/core";
-import { Router } from "@angular/router";
-import { SecurityService } from "../../services/security.service";
-import Swal from "sweetalert2";
-import { tap, catchError } from "rxjs/operators";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SecurityService } from '../../services/security.service';
+import Swal from 'sweetalert2';
 
 @Component({
-  selector: "app-two-factor-auth",
-  templateUrl: "./two-factor-auth.component.html",
-  styleUrls: ["./two-factor-auth.component.scss"],
+  selector: 'app-two-factor-auth',
+  templateUrl: './two-factor-auth.component.html',
+  styleUrls: ['./two-factor-auth.component.scss']
 })
-export class TwoFactorAuthComponent {
-  code: number;
+export class TwoFactorAuthComponent implements OnInit {
+  userId: string | null = null;
+  twoFactorCode: string | null = null;
 
   constructor(
+    private activateRoute: ActivatedRoute,
     private securityService: SecurityService,
     private router: Router
   ) {}
 
-  verifyCode() {
-    const userId = this.securityService.activeUserSession?._id;
-    if (userId) {
-      this.securityService.verifyTwoFactorCode(userId, this.code)
-        .pipe(
-          tap((response) => {
-            if (response.token) {
-              this.securityService.saveSession(response);
-              this.router.navigate(["/dashboard"]);
-            } else {
-              Swal.fire("Código de autenticación incorrecto", "", "error");
-            }
-          }),
-          catchError((error) => {
-            Swal.fire("Error al verificar el código de autenticación", "", "error");
-            throw error; // Propagar el error para manejarlo más arriba si es necesario
-          })
-        )
-        .subscribe();
+  ngOnInit(): void {
+    this.userId = this.activateRoute.snapshot.paramMap.get('id');
+    console.log('User ID on init:', this.userId);
+    if (!this.userId) {
+      console.error('No user ID found in route parameters');
+      Swal.fire('Error', 'No user ID found in route parameters', 'error');
+    }
+  }
+
+  verifyTwoFactorCode() {
+    if (this.userId && this.twoFactorCode) {
+      this.securityService.verifyTwoFactorCode(this.userId, Number(this.twoFactorCode)).subscribe({
+        next: (response) => {
+          this.securityService.saveSession(response);
+          this.router.navigate(['/dashboard']);
+        },
+        error: (error) => {
+          Swal.fire('Error', 'Código de verificación incorrecto', 'error');
+        }
+      });
     } else {
-      Swal.fire("Error de autenticación", "Usuario no autenticado", "error");
-      this.router.navigate(["/login"]); // Redirigir a la página de inicio de sesión si no hay userId
+      Swal.fire('Error', 'Faltan datos para la verificación', 'error');
     }
   }
 }

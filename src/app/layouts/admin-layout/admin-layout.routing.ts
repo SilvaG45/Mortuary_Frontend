@@ -19,7 +19,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: "tables", component: TablesComponent },
   { path: "icons", component: IconsComponent },
   { path: "maps", component: MapsComponent },
-  { path: "two-factor-auth", component: TwoFactorAuthComponent },
+  { path: "two-factor-auth/:id", component: TwoFactorAuthComponent },
   { path: "login", component: LoginComponent },
   {
     path: "rooms",
