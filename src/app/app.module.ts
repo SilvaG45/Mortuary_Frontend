@@ -10,7 +10,6 @@ import { AuthLayoutComponent } from "./layouts/auth-layout/auth-layout.component
 import { AppRoutingModule } from "./app.routing";
 import { ComponentsModule } from "./components/components.module";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { TwoFactorAuthComponent } from "./pages/two-factor-auth/two-factor-auth.component";
 
 @NgModule({
   imports: [
@@ -28,7 +27,6 @@ import { TwoFactorAuthComponent } from "./pages/two-factor-auth/two-factor-auth.
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    TwoFactorAuthComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

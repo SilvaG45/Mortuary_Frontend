@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.theSecurityservice.login(this.theUser).subscribe({
       next: (data: AuthResponse) => {
         console.log('La respuesta del microservicio de seguridad es ' + JSON.stringify(data));
-        if (data.twoFactorRequired) {
+        if (data) {
           this.router.navigate(['/two-factor-auth']); // Redirigir al componente de segundo factor
         } else {
           this.theSecurityservice.saveSession(data);
